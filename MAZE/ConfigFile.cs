@@ -16,6 +16,7 @@ namespace MAZE
 
         public static string TypeConfig_Excel = "Excel File";
         public static string TypeConfig_ACCDB = "ACC DB";
+        public static string TypeConfig_PIConfig = "PI Config";
 
         public static string AttribExcel_FilePath = "FilePath";
         public static string AttribExcel_Host = "Host";
@@ -25,9 +26,6 @@ namespace MAZE
         public static string AttribExcel_Period = "Period";
         public static string AttribExcel_NamePrefix = "NamePrefix";
         public static string AttribExcel_ModifiedOnly = "ModifiedOnly";
-        //public static string AttribExcel_ExcelName = "ExcelName";
-        //public static string AttribExcel_TabName = "TabName";
-        //public static string AttribExcel_TagName = "TagName";
 
         public static string AttribAccdb_FilePath = "FilePath";
         public static string AttribAccdb_Host = "Host";
@@ -38,39 +36,17 @@ namespace MAZE
         public static string AttribAccdb_NamePrefix = "NamePrefix";
         public static string AttribAccdb_ModifiedOnly = "ModifiedOnly";
 
+        public static string AttribPIConfig_Port = "Port";
+        public static string AttribPIConfig_Host = "Host";
+        public static string AttribPIConfig_User = "User";
+        public static string AttribPIConfig_Pass = "Password";
+        public static string AttribPIConfig_OutP = "Destination";
+        public static string AttribPIConfig_Peri = "Period";
+        public static string AttribPIConfig_Pref = "NamePrefix";
+        public static string AttribPIConfig_Mtrx = "MatrixFormat";
+
 
         public static string InstalPath = AppDomain.CurrentDomain.BaseDirectory;
-
-
-        ////Get the value of a atribute from one configuration
-        //public static string load_atribute(string config_name, string atribute_name)
-        //{
-        //    string ConfigFile = InstalPath + "\\Configuration.xml";
-        //    if (File.Exists(ConfigFile))
-        //    {
-        //        XmlDocument doc = new XmlDocument();
-        //        doc.Load(ConfigFile);
-
-
-        //        if (doc.SelectSingleNode("/"+config_name).Attributes[atribute_name] != null)
-        //        {
-        //            return doc.SelectSingleNode("/" + config_name).Attributes[atribute_name].Value;
-        //        }
-        //        else
-        //        {
-        //            LogFile.write_LogFile("Atribute not found for config: " + config_name);
-        //            return "";
-        //        }
-        //    }
-        //    else
-        //    {
-        //        //Creates new file with null text
-        //        File.WriteAllText(ConfigFile, "<AllConfig></AllConfig>");
-        //        LogFile.write_LogFile("Config file not found for config: " + config_name + ". New Blank Configfile created");
-        //        return "";
-        //    }
-            
-        //}
 
         public static void CreateNewConfig(string m_Configname)
         {
@@ -235,58 +211,6 @@ namespace MAZE
             LogFile.write_LogFile("Config File not found during read of attribute \""+atribute_name+"\" for config \""+config_name+"\".");
             return "";
         }
-
-        /// <summary>
-        /// Write a new Whitelist Line to a config
-        /// </summary>
-        /// <param name="config_name"></param>
-        /// <param name="atribute_name"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        //public static bool write_whitelist(string config_name, string excel_name, string tab_name, string tag_name=null)
-        //{
-        //    string ConfigFile = InstalPath + "\\Configuration.xml";
-        //    if (File.Exists(ConfigFile))
-        //    {
-        //        XmlDocument doc = new XmlDocument();
-        //        doc.Load(ConfigFile);
-
-        //        foreach (XmlNode itemNode in doc.SelectNodes("/AllConfig/Config"))
-        //        {
-        //            if (itemNode.Attributes[Attrib_Name] == null || itemNode.Attributes[Attrib_Name].Value != config_name)
-        //                continue;
-
-        //            foreach (XmlNode whiteNode in itemNode.SelectNodes("/WhiteList"))
-        //            {
-
-
-        //                if (whiteNode.Attributes[AttribExcel_ExcelName] != null)
-        //                {
-        //                    whiteNode.Attributes[AttribExcel_ExcelName].Value = excel_name;
-        //                }
-        //                else
-        //                {
-        //                    XmlAttribute ConfigName = doc.CreateAttribute(AttribExcel_ExcelName);
-        //                    ConfigName.Value = excel_name;
-        //                    whiteNode.Attributes.Append(ConfigName);
-        //                }
-        //                doc.Save(ConfigFile);
-        //                return true;
-        //            }
-
-        //            LogFile.write_LogFile("Config name \"" + config_name + "\" has no whitelist nodes for writing whitelist.");
-        //            return false;
-        //        }
-        //    }
-        //        LogFile.write_LogFile("Config name \"" + config_name + "\" was not found for writing whitelist.");
-        //        return false;
-           
-        //}
-
-
-
-
-
 
     }
 }

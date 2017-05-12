@@ -29,6 +29,8 @@ namespace MAZE
             T.IsBackground = true;
             T.Start();
 
+            
+
         }
 
         //Commnn controls for the main window
@@ -59,7 +61,10 @@ namespace MAZE
              
                 this.button_restartService.Click -= new System.EventHandler(this.button_restartService_Click);
                 this.button_restartService.Click += new System.EventHandler(this.button_stopService_Click);
-                label_ServiceStatus.Text = "Service Running";
+                if (label_ServiceStatus.Text == "Service Running")
+                    label_ServiceStatus.Text = "<Service Running>";
+                else
+                    label_ServiceStatus.Text = "Service Running";
                 label_ServiceStatus.ForeColor = Color.Green;
                 button_restartService.Text = "Stop Service";
                 button_restartService.Enabled = true;
@@ -173,6 +178,17 @@ namespace MAZE
                     ConfigFile.write_attribute(formnewConfig.Choosen_Name, ConfigFile.AttribAccdb_ModifiedOnly, "1");
                     ConfigFile.write_attribute(formnewConfig.Choosen_Name, ConfigFile.Attrib_Type, ConfigFile.TypeConfig_ACCDB);
                 }
+                else if (formnewConfig.Choosen_Config == ConfigFile.TypeConfig_PIConfig)
+                {
+                    tabControl_mainTabs.TabPages.Add(tabPage_Config_PIConfig);
+                    tabControl_mainTabs.TabPages.Add(tabPage_Log);
+
+                    ConfigFile.CreateNewConfig(formnewConfig.Choosen_Name);
+                    ConfigFile.write_attribute(formnewConfig.Choosen_Name, ConfigFile.AttribPIConfig_Host, "127.0.0.1");
+                    ConfigFile.write_attribute(formnewConfig.Choosen_Name, ConfigFile.AttribPIConfig_Peri, "15");
+                    ConfigFile.write_attribute(formnewConfig.Choosen_Name, ConfigFile.AttribPIConfig_Mtrx, "1");
+                    ConfigFile.write_attribute(formnewConfig.Choosen_Name, ConfigFile.Attrib_Type, ConfigFile.TypeConfig_PIConfig);
+                }
 
                 listBox_ConfigList.Items.Add(formnewConfig.Choosen_Name);
                 listBox_ConfigList.SelectedIndex = listBox_ConfigList.Items.Count - 1;
@@ -281,6 +297,24 @@ namespace MAZE
                     tabControl_mainTabs.TabPages.Add(tabPage_Log);
                     button_save_accdb.Enabled = false;
                     button_save_accdb.Text = "Saved";
+                }
+                else if (tipo == ConfigFile.TypeConfig_PIConfig)
+                {
+                    textBox_PIConfig_Port.Text = ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Port);
+                    textBox_PIConfig_Host.Text = ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Host);
+                    textBox_PIConfig_User.Text = ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_User);
+                    textBox_PIConfig_Pass.Text = ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Pass);
+                    textBox_PIConfig_OutP.Text = ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_OutP);
+                    textBox_PIConfig_Peri.Text = ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Peri);
+                    textBox_PIConfig_Pref.Text = ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Pref);
+                    if (ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Mtrx) == "1")
+                        checkBox_PIConfig_Mtrx.Checked = true;
+                    else
+                        checkBox_PIConfig_Mtrx.Checked = false;
+                    tabControl_mainTabs.TabPages.Add(tabPage_Config_PIConfig);
+                    tabControl_mainTabs.TabPages.Add(tabPage_Log);
+                    button_PIConfig_Save.Enabled = false;
+                    button_PIConfig_Save.Text = "Saved";
                 }
 
             }
@@ -496,9 +530,5 @@ namespace MAZE
 
         #endregion
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -14,7 +14,7 @@ namespace MAZE.GUI
     {
 
         public string Choosen_Name = "Choose New Name";
-        public string Choosen_Config = "Excel File";
+        public string Choosen_Config = ConfigFile.TypeConfig_Excel;
 
         public Form_NewConfig()
         {
@@ -23,6 +23,7 @@ namespace MAZE.GUI
             comboBox_configTypes.Items.Clear();
             comboBox_configTypes.Items.Add(ConfigFile.TypeConfig_Excel);
             comboBox_configTypes.Items.Add(ConfigFile.TypeConfig_ACCDB);
+            comboBox_configTypes.Items.Add(ConfigFile.TypeConfig_PIConfig);
             //comboBox_configTypes.Items.Add("Another config option");
             comboBox_configTypes.SelectedItem = 0;
             comboBox_configTypes.Refresh();

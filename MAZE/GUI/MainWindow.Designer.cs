@@ -79,6 +79,26 @@
             this.textBox_password_accdb = new System.Windows.Forms.TextBox();
             this.textBox_user_accdb = new System.Windows.Forms.TextBox();
             this.textBox_host_accdb = new System.Windows.Forms.TextBox();
+            this.tabPage_Config_PIConfig = new System.Windows.Forms.TabPage();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBox_PIConfig_Host = new System.Windows.Forms.TextBox();
+            this.checkBox_PIConfig_Mtrx = new System.Windows.Forms.CheckBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox_PIConfig_Pref = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button_PIConfig_Save = new System.Windows.Forms.Button();
+            this.button_PIConfig_TagList = new System.Windows.Forms.Button();
+            this.textBox_PIConfig_Peri = new System.Windows.Forms.TextBox();
+            this.textBox_PIConfig_OutP = new System.Windows.Forms.TextBox();
+            this.textBox_PIConfig_Pass = new System.Windows.Forms.TextBox();
+            this.textBox_PIConfig_User = new System.Windows.Forms.TextBox();
+            this.textBox_PIConfig_Port = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.folderBrowserDialog_output_Excel = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog_ExcelFile_Excel = new System.Windows.Forms.OpenFileDialog();
@@ -89,6 +109,7 @@
             this.tabPage_Config_Excel.SuspendLayout();
             this.tabPage_Log.SuspendLayout();
             this.tabPage_Config_ACCDB.SuspendLayout();
+            this.tabPage_Config_PIConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,6 +160,7 @@
             this.tabControl_mainTabs.Controls.Add(this.tabPage_Config_Excel);
             this.tabControl_mainTabs.Controls.Add(this.tabPage_Log);
             this.tabControl_mainTabs.Controls.Add(this.tabPage_Config_ACCDB);
+            this.tabControl_mainTabs.Controls.Add(this.tabPage_Config_PIConfig);
             this.tabControl_mainTabs.Location = new System.Drawing.Point(178, 13);
             this.tabControl_mainTabs.Name = "tabControl_mainTabs";
             this.tabControl_mainTabs.SelectedIndex = 0;
@@ -229,7 +251,6 @@
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "Password";
-            this.label4.Visible = false;
             // 
             // label3
             // 
@@ -239,7 +260,6 @@
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "User";
-            this.label3.Visible = false;
             // 
             // label2
             // 
@@ -249,7 +269,6 @@
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Host IP";
-            this.label2.Visible = false;
             // 
             // label7
             // 
@@ -346,7 +365,6 @@
             this.textBox_Password_Excel.Name = "textBox_Password_Excel";
             this.textBox_Password_Excel.Size = new System.Drawing.Size(177, 20);
             this.textBox_Password_Excel.TabIndex = 4;
-            this.textBox_Password_Excel.Visible = false;
             this.textBox_Password_Excel.TextChanged += new System.EventHandler(this.ExcelTab_AnyElement_ValueChanged);
             // 
             // textBox_User_Excel
@@ -355,7 +373,6 @@
             this.textBox_User_Excel.Name = "textBox_User_Excel";
             this.textBox_User_Excel.Size = new System.Drawing.Size(177, 20);
             this.textBox_User_Excel.TabIndex = 3;
-            this.textBox_User_Excel.Visible = false;
             this.textBox_User_Excel.TextChanged += new System.EventHandler(this.ExcelTab_AnyElement_ValueChanged);
             // 
             // textBox_Host_Excel
@@ -364,7 +381,6 @@
             this.textBox_Host_Excel.Name = "textBox_Host_Excel";
             this.textBox_Host_Excel.Size = new System.Drawing.Size(177, 20);
             this.textBox_Host_Excel.TabIndex = 2;
-            this.textBox_Host_Excel.Visible = false;
             this.textBox_Host_Excel.TextChanged += new System.EventHandler(this.ExcelTab_AnyElement_ValueChanged);
             // 
             // tabPage_Log
@@ -613,6 +629,201 @@
             this.textBox_host_accdb.Visible = false;
             this.textBox_host_accdb.TextChanged += new System.EventHandler(this.accdbTab_AnyElement_ValueChanged);
             // 
+            // tabPage_Config_PIConfig
+            // 
+            this.tabPage_Config_PIConfig.Controls.Add(this.label24);
+            this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_Host);
+            this.tabPage_Config_PIConfig.Controls.Add(this.checkBox_PIConfig_Mtrx);
+            this.tabPage_Config_PIConfig.Controls.Add(this.label17);
+            this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_Pref);
+            this.tabPage_Config_PIConfig.Controls.Add(this.label18);
+            this.tabPage_Config_PIConfig.Controls.Add(this.label19);
+            this.tabPage_Config_PIConfig.Controls.Add(this.label20);
+            this.tabPage_Config_PIConfig.Controls.Add(this.label21);
+            this.tabPage_Config_PIConfig.Controls.Add(this.label22);
+            this.tabPage_Config_PIConfig.Controls.Add(this.label23);
+            this.tabPage_Config_PIConfig.Controls.Add(this.button1);
+            this.tabPage_Config_PIConfig.Controls.Add(this.button_PIConfig_Save);
+            this.tabPage_Config_PIConfig.Controls.Add(this.button_PIConfig_TagList);
+            this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_Peri);
+            this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_OutP);
+            this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_Pass);
+            this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_User);
+            this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_Port);
+            this.tabPage_Config_PIConfig.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Config_PIConfig.Name = "tabPage_Config_PIConfig";
+            this.tabPage_Config_PIConfig.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Config_PIConfig.Size = new System.Drawing.Size(670, 416);
+            this.tabPage_Config_PIConfig.TabIndex = 3;
+            this.tabPage_Config_PIConfig.Text = "Config";
+            this.tabPage_Config_PIConfig.UseVisualStyleBackColor = true;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(12, 36);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(42, 13);
+            this.label24.TabIndex = 11;
+            this.label24.Text = "Host IP";
+            // 
+            // textBox_PIConfig_Host
+            // 
+            this.textBox_PIConfig_Host.Location = new System.Drawing.Point(102, 30);
+            this.textBox_PIConfig_Host.Name = "textBox_PIConfig_Host";
+            this.textBox_PIConfig_Host.Size = new System.Drawing.Size(177, 20);
+            this.textBox_PIConfig_Host.TabIndex = 10;
+            // 
+            // checkBox_PIConfig_Mtrx
+            // 
+            this.checkBox_PIConfig_Mtrx.AutoSize = true;
+            this.checkBox_PIConfig_Mtrx.Location = new System.Drawing.Point(105, 250);
+            this.checkBox_PIConfig_Mtrx.Name = "checkBox_PIConfig_Mtrx";
+            this.checkBox_PIConfig_Mtrx.Size = new System.Drawing.Size(177, 17);
+            this.checkBox_PIConfig_Mtrx.TabIndex = 8;
+            this.checkBox_PIConfig_Mtrx.Text = "Convert out put to Matrix format.";
+            this.checkBox_PIConfig_Mtrx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox_PIConfig_Mtrx.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(12, 170);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(83, 13);
+            this.label17.TabIndex = 6;
+            this.label17.Text = "File Name Prefix";
+            // 
+            // textBox_PIConfig_Pref
+            // 
+            this.textBox_PIConfig_Pref.Location = new System.Drawing.Point(102, 160);
+            this.textBox_PIConfig_Pref.Name = "textBox_PIConfig_Pref";
+            this.textBox_PIConfig_Pref.Size = new System.Drawing.Size(118, 20);
+            this.textBox_PIConfig_Pref.TabIndex = 5;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(229, 222);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(53, 13);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "[seconds]";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(12, 222);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(87, 13);
+            this.label19.TabIndex = 4;
+            this.label19.Text = "Extraction Period";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(12, 114);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(53, 13);
+            this.label20.TabIndex = 4;
+            this.label20.Text = "Password";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(12, 88);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(40, 13);
+            this.label21.TabIndex = 4;
+            this.label21.Text = "PI user";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(12, 62);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(26, 13);
+            this.label22.TabIndex = 4;
+            this.label22.Text = "Port";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(12, 192);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(63, 13);
+            this.label23.TabIndex = 4;
+            this.label23.Text = "Output path";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(609, 186);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 20);
+            this.button1.TabIndex = 3;
+            this.button1.TabStop = false;
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button_PIConfig_Save
+            // 
+            this.button_PIConfig_Save.Enabled = false;
+            this.button_PIConfig_Save.Location = new System.Drawing.Point(528, 381);
+            this.button_PIConfig_Save.Name = "button_PIConfig_Save";
+            this.button_PIConfig_Save.Size = new System.Drawing.Size(134, 29);
+            this.button_PIConfig_Save.TabIndex = 9;
+            this.button_PIConfig_Save.Text = "Saved";
+            this.button_PIConfig_Save.UseVisualStyleBackColor = true;
+            // 
+            // button_PIConfig_TagList
+            // 
+            this.button_PIConfig_TagList.Location = new System.Drawing.Point(102, 319);
+            this.button_PIConfig_TagList.Name = "button_PIConfig_TagList";
+            this.button_PIConfig_TagList.Size = new System.Drawing.Size(177, 34);
+            this.button_PIConfig_TagList.TabIndex = 0;
+            this.button_PIConfig_TagList.TabStop = false;
+            this.button_PIConfig_TagList.Text = "Tag List";
+            this.button_PIConfig_TagList.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.toolTip1.SetToolTip(this.button_PIConfig_TagList, "ACCDB file name; table Name; tag for filter[optional]; range[optional]\r\n(use * or" +
+        " ? as wild cards)");
+            this.button_PIConfig_TagList.UseVisualStyleBackColor = true;
+            // 
+            // textBox_PIConfig_Peri
+            // 
+            this.textBox_PIConfig_Peri.Location = new System.Drawing.Point(102, 212);
+            this.textBox_PIConfig_Peri.Name = "textBox_PIConfig_Peri";
+            this.textBox_PIConfig_Peri.Size = new System.Drawing.Size(118, 20);
+            this.textBox_PIConfig_Peri.TabIndex = 7;
+            // 
+            // textBox_PIConfig_OutP
+            // 
+            this.textBox_PIConfig_OutP.Location = new System.Drawing.Point(102, 186);
+            this.textBox_PIConfig_OutP.Name = "textBox_PIConfig_OutP";
+            this.textBox_PIConfig_OutP.Size = new System.Drawing.Size(501, 20);
+            this.textBox_PIConfig_OutP.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.textBox_PIConfig_OutP, "Ex: C:\\Folder\\Subfolder\\ (use * or ? as wild cards)");
+            // 
+            // textBox_PIConfig_Pass
+            // 
+            this.textBox_PIConfig_Pass.Location = new System.Drawing.Point(102, 108);
+            this.textBox_PIConfig_Pass.Name = "textBox_PIConfig_Pass";
+            this.textBox_PIConfig_Pass.Size = new System.Drawing.Size(177, 20);
+            this.textBox_PIConfig_Pass.TabIndex = 4;
+            // 
+            // textBox_PIConfig_User
+            // 
+            this.textBox_PIConfig_User.Location = new System.Drawing.Point(102, 82);
+            this.textBox_PIConfig_User.Name = "textBox_PIConfig_User";
+            this.textBox_PIConfig_User.Size = new System.Drawing.Size(177, 20);
+            this.textBox_PIConfig_User.TabIndex = 3;
+            // 
+            // textBox_PIConfig_Port
+            // 
+            this.textBox_PIConfig_Port.Location = new System.Drawing.Point(102, 56);
+            this.textBox_PIConfig_Port.Name = "textBox_PIConfig_Port";
+            this.textBox_PIConfig_Port.Size = new System.Drawing.Size(177, 20);
+            this.textBox_PIConfig_Port.TabIndex = 2;
+            // 
             // toolTip1
             // 
             this.toolTip1.AutoPopDelay = 10000;
@@ -634,12 +845,13 @@
             // 
             // label_ServiceStatus
             // 
-            this.label_ServiceStatus.AutoSize = true;
-            this.label_ServiceStatus.Location = new System.Drawing.Point(41, 403);
+            this.label_ServiceStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ServiceStatus.Location = new System.Drawing.Point(29, 405);
             this.label_ServiceStatus.Name = "label_ServiceStatus";
-            this.label_ServiceStatus.Size = new System.Drawing.Size(86, 13);
+            this.label_ServiceStatus.Size = new System.Drawing.Size(120, 13);
             this.label_ServiceStatus.TabIndex = 3;
             this.label_ServiceStatus.Text = "Service Stopped";
+            this.label_ServiceStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
@@ -651,13 +863,12 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(864, 461);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label_ServiceStatus);
@@ -676,69 +887,90 @@
             this.tabPage_Log.ResumeLayout(false);
             this.tabPage_Config_ACCDB.ResumeLayout(false);
             this.tabPage_Config_ACCDB.PerformLayout();
+            this.tabPage_Config_PIConfig.ResumeLayout(false);
+            this.tabPage_Config_PIConfig.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox_ConfigList;
-        private System.Windows.Forms.Button button_NewConfig;
-        private System.Windows.Forms.Button button_DeleteConfig;
-        private System.Windows.Forms.Button button_RenameConfig;
-        private System.Windows.Forms.TabControl tabControl_mainTabs;
-        private System.Windows.Forms.TabPage tabPage_Config_Excel;
-        private System.Windows.Forms.TabPage tabPage_Log;
-        private System.Windows.Forms.Button button_Save_Excel;
-        private System.Windows.Forms.Button button_SheetFilters_Excel;
-        private System.Windows.Forms.TextBox textBox_Period_Excel;
-        private System.Windows.Forms.TextBox textBox_File_Excel;
-        private System.Windows.Forms.TextBox textBox_Password_Excel;
-        private System.Windows.Forms.TextBox textBox_User_Excel;
-        private System.Windows.Forms.TextBox textBox_Host_Excel;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button_BrowseFile_Excel;
-        private System.Windows.Forms.RichTextBox richTextBox_Log;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button_browseOutPath_Excel;
-        private System.Windows.Forms.TextBox textBox_outPutPath_Excel;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox_NamePrefix_Excel;
-        private System.Windows.Forms.CheckBox checkBox_modifiedOnly_Excel;
-        private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog_output_Excel;
-        private System.Windows.Forms.OpenFileDialog openFileDialog_ExcelFile_Excel;
-        private System.Windows.Forms.TabPage tabPage_Config_ACCDB;
-        private System.Windows.Forms.CheckBox checkBox_modifiedOnly_accdb;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox_namePrefix_accdb;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Button button_browseOutputFolder_accdb;
-        private System.Windows.Forms.Button button_openAccdb_accdb;
-        private System.Windows.Forms.Button button_save_accdb;
-        private System.Windows.Forms.Button button_tableFilters_accdb;
-        private System.Windows.Forms.TextBox textBox_period_accdb;
-        private System.Windows.Forms.TextBox textBox_output_accdb;
-        private System.Windows.Forms.TextBox textBox_accdbFile_accdb;
-        private System.Windows.Forms.TextBox textBox_password_accdb;
-        private System.Windows.Forms.TextBox textBox_user_accdb;
-        private System.Windows.Forms.TextBox textBox_host_accdb;
-        private System.Windows.Forms.Button button_restartService;
-        private System.Windows.Forms.Label label_ServiceStatus;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.ListBox listBox_ConfigList;
+        public System.Windows.Forms.Button button_NewConfig;
+        public System.Windows.Forms.Button button_DeleteConfig;
+        public System.Windows.Forms.Button button_RenameConfig;
+        public System.Windows.Forms.TabControl tabControl_mainTabs;
+        public System.Windows.Forms.TabPage tabPage_Config_Excel;
+        public System.Windows.Forms.TabPage tabPage_Log;
+        public System.Windows.Forms.Button button_Save_Excel;
+        public System.Windows.Forms.Button button_SheetFilters_Excel;
+        public System.Windows.Forms.TextBox textBox_Period_Excel;
+        public System.Windows.Forms.TextBox textBox_File_Excel;
+        public System.Windows.Forms.TextBox textBox_Password_Excel;
+        public System.Windows.Forms.TextBox textBox_User_Excel;
+        public System.Windows.Forms.TextBox textBox_Host_Excel;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Button button_BrowseFile_Excel;
+        public System.Windows.Forms.RichTextBox richTextBox_Log;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Button button_browseOutPath_Excel;
+        public System.Windows.Forms.TextBox textBox_outPutPath_Excel;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.TextBox textBox_NamePrefix_Excel;
+        public System.Windows.Forms.CheckBox checkBox_modifiedOnly_Excel;
+        public System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.FolderBrowserDialog folderBrowserDialog_output_Excel;
+        public System.Windows.Forms.OpenFileDialog openFileDialog_ExcelFile_Excel;
+        public System.Windows.Forms.TabPage tabPage_Config_ACCDB;
+        public System.Windows.Forms.CheckBox checkBox_modifiedOnly_accdb;
+        public System.Windows.Forms.Label label9;
+        public System.Windows.Forms.TextBox textBox_namePrefix_accdb;
+        public System.Windows.Forms.Label label10;
+        public System.Windows.Forms.Label label11;
+        public System.Windows.Forms.Label label12;
+        public System.Windows.Forms.Label label13;
+        public System.Windows.Forms.Label label14;
+        public System.Windows.Forms.Label label15;
+        public System.Windows.Forms.Label label16;
+        public System.Windows.Forms.Button button_browseOutputFolder_accdb;
+        public System.Windows.Forms.Button button_openAccdb_accdb;
+        public System.Windows.Forms.Button button_save_accdb;
+        public System.Windows.Forms.Button button_tableFilters_accdb;
+        public System.Windows.Forms.TextBox textBox_period_accdb;
+        public System.Windows.Forms.TextBox textBox_output_accdb;
+        public System.Windows.Forms.TextBox textBox_accdbFile_accdb;
+        public System.Windows.Forms.TextBox textBox_password_accdb;
+        public System.Windows.Forms.TextBox textBox_user_accdb;
+        public System.Windows.Forms.TextBox textBox_host_accdb;
+        public System.Windows.Forms.Button button_restartService;
+        public System.Windows.Forms.Label label_ServiceStatus;
+        public System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.TabPage tabPage_Config_PIConfig;
+        public System.Windows.Forms.Label label24;
+        public System.Windows.Forms.TextBox textBox_PIConfig_Host;
+        public System.Windows.Forms.CheckBox checkBox_PIConfig_Mtrx;
+        public System.Windows.Forms.Label label17;
+        public System.Windows.Forms.TextBox textBox_PIConfig_Pref;
+        public System.Windows.Forms.Label label18;
+        public System.Windows.Forms.Label label19;
+        public System.Windows.Forms.Label label20;
+        public System.Windows.Forms.Label label21;
+        public System.Windows.Forms.Label label22;
+        public System.Windows.Forms.Label label23;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button button_PIConfig_Save;
+        public System.Windows.Forms.Button button_PIConfig_TagList;
+        public System.Windows.Forms.TextBox textBox_PIConfig_Peri;
+        public System.Windows.Forms.TextBox textBox_PIConfig_OutP;
+        public System.Windows.Forms.TextBox textBox_PIConfig_Pass;
+        public System.Windows.Forms.TextBox textBox_PIConfig_User;
+        public System.Windows.Forms.TextBox textBox_PIConfig_Port;
     }
 }
 
