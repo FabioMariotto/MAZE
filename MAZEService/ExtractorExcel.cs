@@ -102,12 +102,17 @@ namespace MAZE
             foreach (string filepath in FilesToExtract)
             {
                 //LogFile.write_LogFile("checking excel file: " +filepath);
+                
                 if (Support.FileModified(filepath) || ModifiedOnly=="0")
                 {
-                    if (ConvertExcelFile(filepath))
+                    FileInfo currentFileInfo = new FileInfo(filepath);
+                    string tempFilePath = Support.InstalPath + "\\temp\\" + currentFileInfo.Name;
+                    File.Copy(filepath, tempFilePath);
+                    if (ConvertExcelFile(tempFilePath))
                     {
                         Support.RecordProcessedFile(filepath);
                     }
+                    File.Delete(tempFilePath);
                 }
             }
             
@@ -131,19 +136,24 @@ namespace MAZE
 
             try
             {
-                Support.CreateFile(Support.WhitelistFilePrefix + ConfigName + ".txt");
-                whitelistLines = Support.getFileLines(Support.WhitelistFilePrefix+ConfigName+".txt");
-            }
-            catch
-            {
-                LogFile.write_LogFile("No WhiteList file was found. All files will be converted.");
-                whitelistLines = new string[] {"*;*"};
-            }
-
-            try
-            {
 
                 FileInfo currentFileInfo = new FileInfo(m_filePath);
+
+                try
+                {
+                    Support.CreateFile(Support.WhitelistFilePrefix + ConfigName + ".txt");
+                    whitelistLines = Support.getFileLines(Support.WhitelistFilePrefix + ConfigName + ".txt");
+                }
+                catch
+                {
+                    LogFile.write_LogFile("No WhiteList file was found. All files will be converted.");
+                    whitelistLines = new string[] { "*;*" };
+                    throw;
+                }
+
+
+
+
                 if (currentFileInfo.Extension == ".xlsx" || currentFileInfo.Extension == ".xls")
                 {
                     try
@@ -169,7 +179,8 @@ namespace MAZE
                     }
                     catch (Exception e)
                     {
-                        LogFile.write_LogFile(e);
+                        LogFile.write_LogFile("Error reading whitelist: " + e.Message);
+                        //throw;
                     }
 
                     DataSet outputDS = new DataSet();
@@ -191,7 +202,7 @@ namespace MAZE
                             if (!fileinlist || SheetFilters.Exists(x => Regex.IsMatch(sheetName.ToLower(), "^" + x[0].ToLower().Replace("*", ".*") + "$")))
                             {
                                 oleCmd.CommandText = "select * from [" + sheetName + "$]";
-                                DataTable currentDataTable = new DataTable();                             
+                                DataTable currentDataTable = new DataTable();
                                 OleDbDataAdapter OleDA;
                                 try
                                 {
@@ -203,8 +214,8 @@ namespace MAZE
                                 {
                                     continue;
                                 }
-                                
-                                
+
+
 
                                 outputDS.Tables.Add(currentDataTable);
                             }
@@ -248,7 +259,7 @@ namespace MAZE
                             {
                                 File.AppendAllText(Outputpath + NamePrefix + currentFileInfo.Name.Split('.')[0] + "_" + Regex.Replace(currentTable.TableName, @"[:punct:]", "") + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".csv", outputString.ToString());
                             }
-                            catch(Exception exx)
+                            catch (Exception exx)
                             {
                                 LogFile.write_LogFile("Error saving output for file " + currentFileInfo.Name.Split('.')[0] + " at sheet " + Regex.Replace(currentTable.TableName, @"[:punct:]", "") + " with message: " + exx.Message);
                             }
@@ -266,6 +277,7 @@ namespace MAZE
                 LogFile.write_LogFile("File was added to list of processed files: " + m_filePath);
                 return true;
             }
+
         }
 
     }

@@ -48,6 +48,7 @@ namespace MAZE
             }
         }
 
+        #region Service Related Controls
         //update service status on GUI
         private void updateServiceStatus()
         {
@@ -76,6 +77,48 @@ namespace MAZE
                 button_restartService.Enabled = true;
             }
         }
+
+        private void button_restartService_Click(object sender, EventArgs e)
+        {
+            ServiceController serviceController = new ServiceController("MAZE");
+            try
+            {
+
+                if ((serviceController.Status.Equals(ServiceControllerStatus.Stopped)))
+                {
+                    serviceController.Start();
+                    button_restartService.Text = "Starting...";
+                    button_restartService.Enabled = false;
+                    serviceController.WaitForStatus(ServiceControllerStatus.Running);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                LogFile.write_LogFile("Error trying to restart service: " + exc.Message);
+            }
+        }
+
+        private void button_stopService_Click(object sender, EventArgs e)
+        {
+            ServiceController serviceController = new ServiceController("MAZE");
+            try
+            {
+
+                if ((serviceController.Status.Equals(ServiceControllerStatus.Running)) || (serviceController.Status.Equals(ServiceControllerStatus.StartPending)))
+                {
+                    button_restartService.Text = "Stopping...";
+                    button_restartService.Enabled = false;
+                    serviceController.Stop();
+                    serviceController.WaitForStatus(ServiceControllerStatus.Stopped);
+                }
+            }
+            catch (Exception exc)
+            {
+                LogFile.write_LogFile("Error trying to stop service:" + exc.Message);
+            }
+        }
+        #endregion
 
         //updates the log window 
         private void updateLOG()
@@ -158,48 +201,7 @@ namespace MAZE
             }
         }
 
-        private void button_restartService_Click(object sender, EventArgs e)
-        {
-            ServiceController serviceController = new ServiceController("MAZE");
-            try
-            {
-
-                if ((serviceController.Status.Equals(ServiceControllerStatus.Stopped)))
-                {
-                    serviceController.Start();
-                    button_restartService.Text = "Starting...";
-                    button_restartService.Enabled = false;
-                    serviceController.WaitForStatus(ServiceControllerStatus.Running);
-                }
-                
-            }
-            catch (Exception exc)
-            {
-                LogFile.write_LogFile("Error trying to restart service: "+exc.Message);
-            }
-        }
-
-        private void button_stopService_Click(object sender, EventArgs e)
-        {
-            ServiceController serviceController = new ServiceController("MAZE");
-            try
-            {
-
-                if ((serviceController.Status.Equals(ServiceControllerStatus.Running)) || (serviceController.Status.Equals(ServiceControllerStatus.StartPending)))
-                {
-                    button_restartService.Text = "Stopping...";
-                    button_restartService.Enabled = false;
-                    serviceController.Stop();
-                    serviceController.WaitForStatus(ServiceControllerStatus.Stopped);
-                }
-            }
-            catch (Exception exc)
-            {
-                LogFile.write_LogFile("Error trying to stop service:" + exc.Message);
-            }
-        }
-
-
+        
         //User clicks on RENAME CONFIG button
         private void button_RenameConfig_Click(object sender, EventArgs e)
         {
@@ -218,6 +220,7 @@ namespace MAZE
                 }
             }
         }
+
         //Reloads the list of configurations from config file and update the listbox
         private void UpdateConfigList()
         {

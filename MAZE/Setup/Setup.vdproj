@@ -404,6 +404,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_8DFD3F605108421187C10D63C7D80EAE"
+                    {
+                    "Name" = "8:temp"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_E8BA2F89B84C4D6FAE6D7648E291393B"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_AD8DCBD3CF8E48F0B4F740ECBEEE425A"
@@ -467,7 +478,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MAZE"
         "ProductCode" = "8:{13E978CF-3A9B-4029-9BFE-35486BF72C45}"
-        "PackageCode" = "8:{F614BE1B-28E0-4095-B008-D378D8A600A8}"
+        "PackageCode" = "8:{B483487C-6CE8-4CE6-97E1-19731E006CB4}"
         "UpgradeCode" = "8:{7542EB51-4DBA-4FD5-B7F0-A79202E7D2C1}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

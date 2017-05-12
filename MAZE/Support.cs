@@ -59,13 +59,21 @@ namespace MAZE
             {
                 if (ProcessedFile.Split(';')[0] == m_filePath && ProcessedFile.Split().Length > 1)
                 {
-                    FileInfo FileInfo = new FileInfo(m_filePath);
-                    //LogFile.write_LogFile("FileModified?: " + FileInfo.LastWriteTime.ToString() + "==" + ProcessedFile.Split(';')[1] + " e " + (BuildMd5Checksum(m_filePath) + "==" + ProcessedFile.Split(';')[2]));
-                    if (FileInfo.Name.Contains("~$"))
-                        return false; //file is a temporary file
-                    if (FileInfo.LastWriteTime.ToString() == ProcessedFile.Split(';')[1])// && (BuildMd5Checksum(m_filePath) == ProcessedFile.Split(';')[2]))
-                        return false; //file wasnt modified                   
-                    return true; //file was modified
+                    try
+                    {
+                        FileInfo FileInfo = new FileInfo(m_filePath);
+                        //LogFile.write_LogFile("FileModified?: " + FileInfo.LastWriteTime.ToString() + "==" + ProcessedFile.Split(';')[1] + " e " + (BuildMd5Checksum(m_filePath) + "==" + ProcessedFile.Split(';')[2]));
+                        if (FileInfo.Name.Contains("~$"))
+                            return false; //file is a temporary file
+                        if (FileInfo.LastWriteTime.ToString() == ProcessedFile.Split(';')[1])// && (BuildMd5Checksum(m_filePath) == ProcessedFile.Split(';')[2]))
+                            return false; //file wasnt modified                   
+                        return true; //file was modified
+                    }
+                    catch (Exception e)
+                    {
+                        LogFile.write_LogFile("Error verifying file modification for: "+m_filePath+" with message: "+e.Message);
+                        return false;
+                    }
                 }
 
             }
@@ -140,7 +148,7 @@ namespace MAZE
         }
 
         /// <summary>
-        /// Renames a file from install path.
+        /// Renames a file from install path. Does nothing if file not found.
         /// </summary>
         /// <param name="FileName">Name of the old file like: FileName.txt</param>
         /// /// <param name="NewFileName">Name of the new file like: FileName.txt</param>
