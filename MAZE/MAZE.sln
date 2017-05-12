@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAZE", "MAZE.csproj", "{9AAFE19E-1B7A-49CA-8816-A1ABE8E6355B}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{3C4B92B2-BD8C-462C-AF04-0624D6EA6BE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAZEservice", "..\MAZEService\MAZEservice.csproj", "{EFDBD85B-D2F4-44CE-8FB0-7BC069421442}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9AAFE19E-1B7A-49CA-8816-A1ABE8E6355B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AAFE19E-1B7A-49CA-8816-A1ABE8E6355B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AAFE19E-1B7A-49CA-8816-A1ABE8E6355B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9AAFE19E-1B7A-49CA-8816-A1ABE8E6355B}.Debug|x86.Build.0 = Debug|Any CPU
+		{9AAFE19E-1B7A-49CA-8816-A1ABE8E6355B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AAFE19E-1B7A-49CA-8816-A1ABE8E6355B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AAFE19E-1B7A-49CA-8816-A1ABE8E6355B}.Release|x86.ActiveCfg = Release|Any CPU
+		{9AAFE19E-1B7A-49CA-8816-A1ABE8E6355B}.Release|x86.Build.0 = Release|Any CPU
+		{3C4B92B2-BD8C-462C-AF04-0624D6EA6BE0}.Debug|Any CPU.ActiveCfg = Debug
+		{3C4B92B2-BD8C-462C-AF04-0624D6EA6BE0}.Debug|x86.ActiveCfg = Debug
+		{3C4B92B2-BD8C-462C-AF04-0624D6EA6BE0}.Release|Any CPU.ActiveCfg = Release
+		{3C4B92B2-BD8C-462C-AF04-0624D6EA6BE0}.Release|Any CPU.Build.0 = Release
+		{3C4B92B2-BD8C-462C-AF04-0624D6EA6BE0}.Release|x86.ActiveCfg = Release
+		{EFDBD85B-D2F4-44CE-8FB0-7BC069421442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFDBD85B-D2F4-44CE-8FB0-7BC069421442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFDBD85B-D2F4-44CE-8FB0-7BC069421442}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EFDBD85B-D2F4-44CE-8FB0-7BC069421442}.Debug|x86.Build.0 = Debug|Any CPU
+		{EFDBD85B-D2F4-44CE-8FB0-7BC069421442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFDBD85B-D2F4-44CE-8FB0-7BC069421442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFDBD85B-D2F4-44CE-8FB0-7BC069421442}.Release|x86.ActiveCfg = Release|Any CPU
+		{EFDBD85B-D2F4-44CE-8FB0-7BC069421442}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
