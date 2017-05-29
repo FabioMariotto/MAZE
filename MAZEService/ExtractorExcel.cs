@@ -82,8 +82,12 @@ namespace MAZE
             }
             else
             {
-                filename = pathParts[2];
-                filefolder = pathParts[1];
+                filename = pathParts[2].Replace("<yyyy>", DateTime.Now.ToString("yyyy"))
+                    .Replace("<yy>", DateTime.Now.ToString("yy"))
+                    .Replace("<MM>", DateTime.Now.ToString("MM"));
+                filefolder = pathParts[1].Replace("<yyyy>", DateTime.Now.ToString("yyyy"))
+                    .Replace("<yy>", DateTime.Now.ToString("yy"))
+                    .Replace("<MM>", DateTime.Now.ToString("MM"));
             }
 
             try
@@ -249,7 +253,7 @@ namespace MAZE
                             {
                                 cellvalue = "";
                                 for (int j = 0; j < currentTable.Columns.Count; j++)
-                                    cellvalue += Regex.Replace(currentTable.Rows[i].ItemArray[j].ToString().Replace(";", ""), @"[;\'$]", "") + "; ";
+                                    cellvalue += Regex.Replace(currentTable.Rows[i].ItemArray[j].ToString(), @"[;\'$|\r\n|\r|\n]", " ") + ";";
                                 outputString.AppendFormat("{0}", cellvalue.TrimEnd(';'));
                                 outputString.AppendLine();
                             }

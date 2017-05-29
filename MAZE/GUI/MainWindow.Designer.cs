@@ -356,7 +356,7 @@
             this.textBox_File_Excel.Name = "textBox_File_Excel";
             this.textBox_File_Excel.Size = new System.Drawing.Size(501, 20);
             this.textBox_File_Excel.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.textBox_File_Excel, "Ex: C:\\Folder\\Subfolder\\FileName.extension (use * or ? as wild cards)");
+            this.toolTip1.SetToolTip(this.textBox_File_Excel, "Ex: C:\\Folder\\Subfolder\\FileName.extension (Wildcards: * ? <yyyy> <yy> <MM>)");
             this.textBox_File_Excel.TextChanged += new System.EventHandler(this.ExcelTab_excelFile_ValueChanged);
             // 
             // textBox_Password_Excel
@@ -365,6 +365,7 @@
             this.textBox_Password_Excel.Name = "textBox_Password_Excel";
             this.textBox_Password_Excel.Size = new System.Drawing.Size(177, 20);
             this.textBox_Password_Excel.TabIndex = 4;
+            this.textBox_Password_Excel.Visible = false;
             this.textBox_Password_Excel.TextChanged += new System.EventHandler(this.ExcelTab_AnyElement_ValueChanged);
             // 
             // textBox_User_Excel
@@ -373,6 +374,7 @@
             this.textBox_User_Excel.Name = "textBox_User_Excel";
             this.textBox_User_Excel.Size = new System.Drawing.Size(177, 20);
             this.textBox_User_Excel.TabIndex = 3;
+            this.textBox_User_Excel.Visible = false;
             this.textBox_User_Excel.TextChanged += new System.EventHandler(this.ExcelTab_AnyElement_ValueChanged);
             // 
             // textBox_Host_Excel
@@ -381,6 +383,7 @@
             this.textBox_Host_Excel.Name = "textBox_Host_Excel";
             this.textBox_Host_Excel.Size = new System.Drawing.Size(177, 20);
             this.textBox_Host_Excel.TabIndex = 2;
+            this.textBox_Host_Excel.Visible = false;
             this.textBox_Host_Excel.TextChanged += new System.EventHandler(this.ExcelTab_AnyElement_ValueChanged);
             // 
             // tabPage_Log
@@ -599,7 +602,7 @@
             this.textBox_accdbFile_accdb.Name = "textBox_accdbFile_accdb";
             this.textBox_accdbFile_accdb.Size = new System.Drawing.Size(501, 20);
             this.textBox_accdbFile_accdb.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.textBox_accdbFile_accdb, "Ex: C:\\Folder\\Subfolder\\FileName.extension (use * or ? as wild cards)");
+            this.toolTip1.SetToolTip(this.textBox_accdbFile_accdb, "Ex: C:\\Folder\\Subfolder\\FileName.extension (Wildcards: * ? <yyyy> <yy> <MM>)");
             this.textBox_accdbFile_accdb.TextChanged += new System.EventHandler(this.accdbTab_accdbFile_ValueChanged);
             // 
             // textBox_password_accdb
@@ -801,7 +804,7 @@
             this.textBox_PIConfig_OutP.Name = "textBox_PIConfig_OutP";
             this.textBox_PIConfig_OutP.Size = new System.Drawing.Size(501, 20);
             this.textBox_PIConfig_OutP.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.textBox_PIConfig_OutP, "Ex: C:\\Folder\\Subfolder\\ (use * or ? as wild cards)");
+            this.toolTip1.SetToolTip(this.textBox_PIConfig_OutP, "Ex: C:\\Folder\\Subfolder\\ (Wildcards: * ? <yyyy> <yy> <MM>)");
             // 
             // textBox_PIConfig_Pass
             // 

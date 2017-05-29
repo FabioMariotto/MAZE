@@ -82,8 +82,12 @@ namespace MAZE
             }
             else
             {
-                filename = pathParts[2];
-                filefolder = pathParts[1];
+                filename = pathParts[2].Replace("<yyyy>", DateTime.Now.ToString("yyyy"))
+                    .Replace("<yy>", DateTime.Now.ToString("yy"))
+                    .Replace("<MM>", DateTime.Now.ToString("MM"));
+                filefolder = pathParts[1].Replace("<yyyy>",DateTime.Now.ToString("yyyy"))
+                    .Replace("<yy>", DateTime.Now.ToString("yy"))
+                    .Replace("<MM>", DateTime.Now.ToString("MM"));
             }
 
             try
@@ -212,12 +216,12 @@ namespace MAZE
                             var table = reader.GetSchemaTable();
                             var nameCol = table.Columns["ColumnName"];
                             
-                            outputString = table.Rows[0][nameCol].ToString().Replace(";", "");
+                            outputString = Regex.Replace(table.Rows[0][nameCol].ToString(), "[;|\r\n|\r|\n]", " ");
                             if (table.Rows.Count > 1)
                             {
                                 for (int i = 1; i < table.Rows.Count; i++)
                                 {
-                                    outputString = outputString + ";" + table.Rows[i][nameCol].ToString().Replace(";", "");
+                                    outputString = outputString + ";" + Regex.Replace(table.Rows[i][nameCol].ToString(), "[;|\r\n|\r|\n]", " ");
                                 }
                             }
                             outputString = outputString + Environment.NewLine;
@@ -229,7 +233,7 @@ namespace MAZE
                                 {
                                     for (int i = 1; i < reader.FieldCount; i++)
                                     {
-                                        outputString = outputString + ";" + reader[i].ToString().Replace(";", "");
+                                        outputString = outputString + ";" + Regex.Replace(reader[i].ToString(), "[;|\r\n|\r|\n]", " ");
                                     }
                                 }
                                 outputString = outputString + Environment.NewLine;
