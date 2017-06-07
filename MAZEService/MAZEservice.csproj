@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtractorAccdb.cs" />
+    <Compile Include="ExtractorPIConfig.cs" />
     <Compile Include="ExtractorExcel.cs" />
     <Compile Include="ExtractorInterface.cs" />
     <Compile Include="MainService.cs">

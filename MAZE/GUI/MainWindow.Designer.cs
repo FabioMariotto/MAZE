@@ -80,6 +80,13 @@
             this.textBox_user_accdb = new System.Windows.Forms.TextBox();
             this.textBox_host_accdb = new System.Windows.Forms.TextBox();
             this.tabPage_Config_PIConfig = new System.Windows.Forms.TabPage();
+            this.label26 = new System.Windows.Forms.Label();
+            this.textBox_PIConfig_Hfro = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBox_PIConfig_Htoo = new System.Windows.Forms.TextBox();
+            this.button_PIConfig_ExtractDataHistory = new System.Windows.Forms.Button();
+            this.button_PIConfig_GetAllTagList = new System.Windows.Forms.Button();
+            this.button_PIConfig_AllTagList = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.textBox_PIConfig_Host = new System.Windows.Forms.TextBox();
             this.checkBox_PIConfig_Mtrx = new System.Windows.Forms.CheckBox();
@@ -91,7 +98,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_PIConfig_browseOutP = new System.Windows.Forms.Button();
             this.button_PIConfig_Save = new System.Windows.Forms.Button();
             this.button_PIConfig_TagList = new System.Windows.Forms.Button();
             this.textBox_PIConfig_Peri = new System.Windows.Forms.TextBox();
@@ -105,6 +112,8 @@
             this.button_restartService = new System.Windows.Forms.Button();
             this.label_ServiceStatus = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.textBox_PIConfig_HPer = new System.Windows.Forms.TextBox();
             this.tabControl_mainTabs.SuspendLayout();
             this.tabPage_Config_Excel.SuspendLayout();
             this.tabPage_Log.SuspendLayout();
@@ -118,7 +127,7 @@
             this.listBox_ConfigList.FormattingEnabled = true;
             this.listBox_ConfigList.Location = new System.Drawing.Point(15, 13);
             this.listBox_ConfigList.Name = "listBox_ConfigList";
-            this.listBox_ConfigList.Size = new System.Drawing.Size(146, 160);
+            this.listBox_ConfigList.Size = new System.Drawing.Size(134, 160);
             this.listBox_ConfigList.TabIndex = 0;
             this.listBox_ConfigList.SelectedIndexChanged += new System.EventHandler(this.listBox_ConfigList_SelectedIndexChanged);
             // 
@@ -126,7 +135,7 @@
             // 
             this.button_NewConfig.Location = new System.Drawing.Point(16, 182);
             this.button_NewConfig.Name = "button_NewConfig";
-            this.button_NewConfig.Size = new System.Drawing.Size(146, 23);
+            this.button_NewConfig.Size = new System.Drawing.Size(133, 23);
             this.button_NewConfig.TabIndex = 1;
             this.button_NewConfig.TabStop = false;
             this.button_NewConfig.Text = "New Config";
@@ -137,7 +146,7 @@
             // 
             this.button_DeleteConfig.Location = new System.Drawing.Point(15, 240);
             this.button_DeleteConfig.Name = "button_DeleteConfig";
-            this.button_DeleteConfig.Size = new System.Drawing.Size(147, 23);
+            this.button_DeleteConfig.Size = new System.Drawing.Size(134, 23);
             this.button_DeleteConfig.TabIndex = 1;
             this.button_DeleteConfig.TabStop = false;
             this.button_DeleteConfig.Text = "Delete Config";
@@ -148,7 +157,7 @@
             // 
             this.button_RenameConfig.Location = new System.Drawing.Point(16, 211);
             this.button_RenameConfig.Name = "button_RenameConfig";
-            this.button_RenameConfig.Size = new System.Drawing.Size(146, 23);
+            this.button_RenameConfig.Size = new System.Drawing.Size(133, 23);
             this.button_RenameConfig.TabIndex = 1;
             this.button_RenameConfig.TabStop = false;
             this.button_RenameConfig.Text = "Rename Config";
@@ -161,10 +170,10 @@
             this.tabControl_mainTabs.Controls.Add(this.tabPage_Log);
             this.tabControl_mainTabs.Controls.Add(this.tabPage_Config_ACCDB);
             this.tabControl_mainTabs.Controls.Add(this.tabPage_Config_PIConfig);
-            this.tabControl_mainTabs.Location = new System.Drawing.Point(178, 13);
+            this.tabControl_mainTabs.Location = new System.Drawing.Point(155, 13);
             this.tabControl_mainTabs.Name = "tabControl_mainTabs";
             this.tabControl_mainTabs.SelectedIndex = 0;
-            this.tabControl_mainTabs.Size = new System.Drawing.Size(678, 442);
+            this.tabControl_mainTabs.Size = new System.Drawing.Size(701, 442);
             this.tabControl_mainTabs.TabIndex = 2;
             // 
             // tabPage_Config_Excel
@@ -192,7 +201,7 @@
             this.tabPage_Config_Excel.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Config_Excel.Name = "tabPage_Config_Excel";
             this.tabPage_Config_Excel.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Config_Excel.Size = new System.Drawing.Size(670, 416);
+            this.tabPage_Config_Excel.Size = new System.Drawing.Size(693, 416);
             this.tabPage_Config_Excel.TabIndex = 0;
             this.tabPage_Config_Excel.Text = "Config";
             this.tabPage_Config_Excel.UseVisualStyleBackColor = true;
@@ -251,6 +260,7 @@
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "Password";
+            this.label4.Visible = false;
             // 
             // label3
             // 
@@ -260,6 +270,7 @@
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "User";
+            this.label3.Visible = false;
             // 
             // label2
             // 
@@ -269,6 +280,7 @@
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Host IP";
+            this.label2.Visible = false;
             // 
             // label7
             // 
@@ -392,7 +404,7 @@
             this.tabPage_Log.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Log.Name = "tabPage_Log";
             this.tabPage_Log.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Log.Size = new System.Drawing.Size(670, 416);
+            this.tabPage_Log.Size = new System.Drawing.Size(693, 416);
             this.tabPage_Log.TabIndex = 1;
             this.tabPage_Log.Text = "Log";
             this.tabPage_Log.UseVisualStyleBackColor = true;
@@ -433,7 +445,7 @@
             this.tabPage_Config_ACCDB.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Config_ACCDB.Name = "tabPage_Config_ACCDB";
             this.tabPage_Config_ACCDB.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Config_ACCDB.Size = new System.Drawing.Size(670, 416);
+            this.tabPage_Config_ACCDB.Size = new System.Drawing.Size(693, 416);
             this.tabPage_Config_ACCDB.TabIndex = 2;
             this.tabPage_Config_ACCDB.Text = "Config";
             this.tabPage_Config_ACCDB.UseVisualStyleBackColor = true;
@@ -634,6 +646,15 @@
             // 
             // tabPage_Config_PIConfig
             // 
+            this.tabPage_Config_PIConfig.Controls.Add(this.label27);
+            this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_HPer);
+            this.tabPage_Config_PIConfig.Controls.Add(this.label26);
+            this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_Hfro);
+            this.tabPage_Config_PIConfig.Controls.Add(this.label25);
+            this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_Htoo);
+            this.tabPage_Config_PIConfig.Controls.Add(this.button_PIConfig_ExtractDataHistory);
+            this.tabPage_Config_PIConfig.Controls.Add(this.button_PIConfig_GetAllTagList);
+            this.tabPage_Config_PIConfig.Controls.Add(this.button_PIConfig_AllTagList);
             this.tabPage_Config_PIConfig.Controls.Add(this.label24);
             this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_Host);
             this.tabPage_Config_PIConfig.Controls.Add(this.checkBox_PIConfig_Mtrx);
@@ -645,7 +666,7 @@
             this.tabPage_Config_PIConfig.Controls.Add(this.label21);
             this.tabPage_Config_PIConfig.Controls.Add(this.label22);
             this.tabPage_Config_PIConfig.Controls.Add(this.label23);
-            this.tabPage_Config_PIConfig.Controls.Add(this.button1);
+            this.tabPage_Config_PIConfig.Controls.Add(this.button_PIConfig_browseOutP);
             this.tabPage_Config_PIConfig.Controls.Add(this.button_PIConfig_Save);
             this.tabPage_Config_PIConfig.Controls.Add(this.button_PIConfig_TagList);
             this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_Peri);
@@ -656,10 +677,80 @@
             this.tabPage_Config_PIConfig.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Config_PIConfig.Name = "tabPage_Config_PIConfig";
             this.tabPage_Config_PIConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Config_PIConfig.Size = new System.Drawing.Size(670, 416);
+            this.tabPage_Config_PIConfig.Size = new System.Drawing.Size(693, 416);
             this.tabPage_Config_PIConfig.TabIndex = 3;
             this.tabPage_Config_PIConfig.Text = "Config";
             this.tabPage_Config_PIConfig.UseVisualStyleBackColor = true;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(420, 33);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(30, 13);
+            this.label26.TabIndex = 18;
+            this.label26.Text = "From";
+            // 
+            // textBox_PIConfig_Hfro
+            // 
+            this.textBox_PIConfig_Hfro.Location = new System.Drawing.Point(471, 30);
+            this.textBox_PIConfig_Hfro.Name = "textBox_PIConfig_Hfro";
+            this.textBox_PIConfig_Hfro.Size = new System.Drawing.Size(132, 20);
+            this.textBox_PIConfig_Hfro.TabIndex = 17;
+            this.textBox_PIConfig_Hfro.TextChanged += new System.EventHandler(this.textBox_PIConfig_Hfro_ValueChanged);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(420, 59);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(20, 13);
+            this.label25.TabIndex = 16;
+            this.label25.Text = "To";
+            // 
+            // textBox_PIConfig_Htoo
+            // 
+            this.textBox_PIConfig_Htoo.Location = new System.Drawing.Point(471, 56);
+            this.textBox_PIConfig_Htoo.Name = "textBox_PIConfig_Htoo";
+            this.textBox_PIConfig_Htoo.Size = new System.Drawing.Size(132, 20);
+            this.textBox_PIConfig_Htoo.TabIndex = 15;
+            this.textBox_PIConfig_Htoo.TextChanged += new System.EventHandler(this.textBox_PIConfig_Htoo_ValueChanged);
+            // 
+            // button_PIConfig_ExtractDataHistory
+            // 
+            this.button_PIConfig_ExtractDataHistory.Location = new System.Drawing.Point(471, 107);
+            this.button_PIConfig_ExtractDataHistory.Name = "button_PIConfig_ExtractDataHistory";
+            this.button_PIConfig_ExtractDataHistory.Size = new System.Drawing.Size(132, 21);
+            this.button_PIConfig_ExtractDataHistory.TabIndex = 14;
+            this.button_PIConfig_ExtractDataHistory.TabStop = false;
+            this.button_PIConfig_ExtractDataHistory.Text = "Extract Data History";
+            this.button_PIConfig_ExtractDataHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.button_PIConfig_ExtractDataHistory.UseVisualStyleBackColor = true;
+            this.button_PIConfig_ExtractDataHistory.Click += new System.EventHandler(this.button_PIConfig_ExtractDataHistory_Click);
+            // 
+            // button_PIConfig_GetAllTagList
+            // 
+            this.button_PIConfig_GetAllTagList.Location = new System.Drawing.Point(295, 307);
+            this.button_PIConfig_GetAllTagList.Name = "button_PIConfig_GetAllTagList";
+            this.button_PIConfig_GetAllTagList.Size = new System.Drawing.Size(132, 27);
+            this.button_PIConfig_GetAllTagList.TabIndex = 13;
+            this.button_PIConfig_GetAllTagList.TabStop = false;
+            this.button_PIConfig_GetAllTagList.Text = "Get PI List";
+            this.button_PIConfig_GetAllTagList.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.button_PIConfig_GetAllTagList.UseVisualStyleBackColor = true;
+            this.button_PIConfig_GetAllTagList.Click += new System.EventHandler(this.button_PIConfig_GetAllTagList_Click);
+            // 
+            // button_PIConfig_AllTagList
+            // 
+            this.button_PIConfig_AllTagList.Location = new System.Drawing.Point(295, 340);
+            this.button_PIConfig_AllTagList.Name = "button_PIConfig_AllTagList";
+            this.button_PIConfig_AllTagList.Size = new System.Drawing.Size(132, 27);
+            this.button_PIConfig_AllTagList.TabIndex = 12;
+            this.button_PIConfig_AllTagList.TabStop = false;
+            this.button_PIConfig_AllTagList.Text = "All Tags List";
+            this.button_PIConfig_AllTagList.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.button_PIConfig_AllTagList.UseVisualStyleBackColor = true;
+            this.button_PIConfig_AllTagList.Click += new System.EventHandler(this.button_PIConfig_AllTagList_Click);
             // 
             // label24
             // 
@@ -676,6 +767,7 @@
             this.textBox_PIConfig_Host.Name = "textBox_PIConfig_Host";
             this.textBox_PIConfig_Host.Size = new System.Drawing.Size(177, 20);
             this.textBox_PIConfig_Host.TabIndex = 10;
+            this.textBox_PIConfig_Host.TextChanged += new System.EventHandler(this.PIConfig_AnyElement_ValueChanged);
             // 
             // checkBox_PIConfig_Mtrx
             // 
@@ -687,6 +779,7 @@
             this.checkBox_PIConfig_Mtrx.Text = "Convert out put to Matrix format.";
             this.checkBox_PIConfig_Mtrx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox_PIConfig_Mtrx.UseVisualStyleBackColor = true;
+            this.checkBox_PIConfig_Mtrx.CheckedChanged += new System.EventHandler(this.PIConfig_AnyElement_ValueChanged);
             // 
             // label17
             // 
@@ -703,6 +796,7 @@
             this.textBox_PIConfig_Pref.Name = "textBox_PIConfig_Pref";
             this.textBox_PIConfig_Pref.Size = new System.Drawing.Size(118, 20);
             this.textBox_PIConfig_Pref.TabIndex = 5;
+            this.textBox_PIConfig_Pref.TextChanged += new System.EventHandler(this.PIConfig_AnyElement_ValueChanged);
             // 
             // label18
             // 
@@ -758,15 +852,16 @@
             this.label23.TabIndex = 4;
             this.label23.Text = "Output path";
             // 
-            // button1
+            // button_PIConfig_browseOutP
             // 
-            this.button1.Location = new System.Drawing.Point(609, 186);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 20);
-            this.button1.TabIndex = 3;
-            this.button1.TabStop = false;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_PIConfig_browseOutP.Location = new System.Drawing.Point(609, 186);
+            this.button_PIConfig_browseOutP.Name = "button_PIConfig_browseOutP";
+            this.button_PIConfig_browseOutP.Size = new System.Drawing.Size(25, 20);
+            this.button_PIConfig_browseOutP.TabIndex = 3;
+            this.button_PIConfig_browseOutP.TabStop = false;
+            this.button_PIConfig_browseOutP.Text = "...";
+            this.button_PIConfig_browseOutP.UseVisualStyleBackColor = true;
+            this.button_PIConfig_browseOutP.Click += new System.EventHandler(this.button_PIConfig_browseOutP_Click);
             // 
             // button_PIConfig_Save
             // 
@@ -777,6 +872,7 @@
             this.button_PIConfig_Save.TabIndex = 9;
             this.button_PIConfig_Save.Text = "Saved";
             this.button_PIConfig_Save.UseVisualStyleBackColor = true;
+            this.button_PIConfig_Save.Click += new System.EventHandler(this.button_PIConfig_Save_click);
             // 
             // button_PIConfig_TagList
             // 
@@ -787,9 +883,8 @@
             this.button_PIConfig_TagList.TabStop = false;
             this.button_PIConfig_TagList.Text = "Tag List";
             this.button_PIConfig_TagList.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.toolTip1.SetToolTip(this.button_PIConfig_TagList, "ACCDB file name; table Name; tag for filter[optional]; range[optional]\r\n(use * or" +
-        " ? as wild cards)");
             this.button_PIConfig_TagList.UseVisualStyleBackColor = true;
+            this.button_PIConfig_TagList.Click += new System.EventHandler(this.button_PIConfig_TagList_click);
             // 
             // textBox_PIConfig_Peri
             // 
@@ -797,6 +892,7 @@
             this.textBox_PIConfig_Peri.Name = "textBox_PIConfig_Peri";
             this.textBox_PIConfig_Peri.Size = new System.Drawing.Size(118, 20);
             this.textBox_PIConfig_Peri.TabIndex = 7;
+            this.textBox_PIConfig_Peri.TextChanged += new System.EventHandler(this.PIConfig_AnyElement_ValueChanged);
             // 
             // textBox_PIConfig_OutP
             // 
@@ -804,14 +900,16 @@
             this.textBox_PIConfig_OutP.Name = "textBox_PIConfig_OutP";
             this.textBox_PIConfig_OutP.Size = new System.Drawing.Size(501, 20);
             this.textBox_PIConfig_OutP.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.textBox_PIConfig_OutP, "Ex: C:\\Folder\\Subfolder\\ (Wildcards: * ? <yyyy> <yy> <MM>)");
+            this.toolTip1.SetToolTip(this.textBox_PIConfig_OutP, "Ex: C:\\Folder\\Subfolder\\");
+            this.textBox_PIConfig_OutP.TextChanged += new System.EventHandler(this.PIConfig_OutPath_ValueChanged);
             // 
             // textBox_PIConfig_Pass
             // 
             this.textBox_PIConfig_Pass.Location = new System.Drawing.Point(102, 108);
             this.textBox_PIConfig_Pass.Name = "textBox_PIConfig_Pass";
-            this.textBox_PIConfig_Pass.Size = new System.Drawing.Size(177, 20);
+            this.textBox_PIConfig_Pass.Size = new System.Drawing.Size(180, 20);
             this.textBox_PIConfig_Pass.TabIndex = 4;
+            this.textBox_PIConfig_Pass.TextChanged += new System.EventHandler(this.PIConfig_AnyElement_ValueChanged);
             // 
             // textBox_PIConfig_User
             // 
@@ -819,6 +917,7 @@
             this.textBox_PIConfig_User.Name = "textBox_PIConfig_User";
             this.textBox_PIConfig_User.Size = new System.Drawing.Size(177, 20);
             this.textBox_PIConfig_User.TabIndex = 3;
+            this.textBox_PIConfig_User.TextChanged += new System.EventHandler(this.PIConfig_AnyElement_ValueChanged);
             // 
             // textBox_PIConfig_Port
             // 
@@ -826,6 +925,7 @@
             this.textBox_PIConfig_Port.Name = "textBox_PIConfig_Port";
             this.textBox_PIConfig_Port.Size = new System.Drawing.Size(177, 20);
             this.textBox_PIConfig_Port.TabIndex = 2;
+            this.textBox_PIConfig_Port.TextChanged += new System.EventHandler(this.PIConfig_AnyElement_ValueChanged);
             // 
             // toolTip1
             // 
@@ -837,9 +937,9 @@
             // button_restartService
             // 
             this.button_restartService.Enabled = false;
-            this.button_restartService.Location = new System.Drawing.Point(17, 421);
+            this.button_restartService.Location = new System.Drawing.Point(16, 422);
             this.button_restartService.Name = "button_restartService";
-            this.button_restartService.Size = new System.Drawing.Size(145, 23);
+            this.button_restartService.Size = new System.Drawing.Size(132, 23);
             this.button_restartService.TabIndex = 1;
             this.button_restartService.TabStop = false;
             this.button_restartService.Text = "Start Service";
@@ -849,9 +949,9 @@
             // label_ServiceStatus
             // 
             this.label_ServiceStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_ServiceStatus.Location = new System.Drawing.Point(29, 405);
+            this.label_ServiceStatus.Location = new System.Drawing.Point(12, 405);
             this.label_ServiceStatus.Name = "label_ServiceStatus";
-            this.label_ServiceStatus.Size = new System.Drawing.Size(120, 13);
+            this.label_ServiceStatus.Size = new System.Drawing.Size(137, 13);
             this.label_ServiceStatus.TabIndex = 3;
             this.label_ServiceStatus.Text = "Service Stopped";
             this.label_ServiceStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -860,12 +960,28 @@
             // 
             this.pictureBox1.Image = global::MAZE.Properties.Resources.maze_logo;
             this.pictureBox1.InitialImage = global::MAZE.Properties.Resources.maze_logo;
-            this.pictureBox1.Location = new System.Drawing.Point(35, 280);
+            this.pictureBox1.Location = new System.Drawing.Point(29, 283);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(105, 105);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(420, 84);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(37, 13);
+            this.label27.TabIndex = 20;
+            this.label27.Text = "Period";
+            // 
+            // textBox_PIConfig_HPer
+            // 
+            this.textBox_PIConfig_HPer.Location = new System.Drawing.Point(471, 81);
+            this.textBox_PIConfig_HPer.Name = "textBox_PIConfig_HPer";
+            this.textBox_PIConfig_HPer.Size = new System.Drawing.Size(132, 20);
+            this.textBox_PIConfig_HPer.TabIndex = 19;
             // 
             // Form_Main
             // 
@@ -966,7 +1082,7 @@
         public System.Windows.Forms.Label label21;
         public System.Windows.Forms.Label label22;
         public System.Windows.Forms.Label label23;
-        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button button_PIConfig_browseOutP;
         public System.Windows.Forms.Button button_PIConfig_Save;
         public System.Windows.Forms.Button button_PIConfig_TagList;
         public System.Windows.Forms.TextBox textBox_PIConfig_Peri;
@@ -974,6 +1090,15 @@
         public System.Windows.Forms.TextBox textBox_PIConfig_Pass;
         public System.Windows.Forms.TextBox textBox_PIConfig_User;
         public System.Windows.Forms.TextBox textBox_PIConfig_Port;
+        public System.Windows.Forms.Button button_PIConfig_GetAllTagList;
+        public System.Windows.Forms.Button button_PIConfig_AllTagList;
+        public System.Windows.Forms.Label label26;
+        public System.Windows.Forms.TextBox textBox_PIConfig_Hfro;
+        public System.Windows.Forms.Label label25;
+        public System.Windows.Forms.TextBox textBox_PIConfig_Htoo;
+        public System.Windows.Forms.Button button_PIConfig_ExtractDataHistory;
+        public System.Windows.Forms.Label label27;
+        public System.Windows.Forms.TextBox textBox_PIConfig_HPer;
     }
 }
 

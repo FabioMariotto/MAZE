@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_067A7CDFCE1B46CC9C3A6658535D3E27"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_09C9B5902BC042096D7B67AAB2A838DF"
         "OwnerKey" = "8:_44B8A3D4DF35414C8A41A357EDCEA748"
         "MsmSig" = "8:_UNDEFINED"
@@ -286,6 +292,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_067A7CDFCE1B46CC9C3A6658535D3E27"
+            {
+            "SourcePath" = "8:..\\Resources\\piconfig.exe"
+            "TargetName" = "8:piconfig.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_67C146576E2A437D865D4AA2A047F534"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_09C9B5902BC042096D7B67AAB2A838DF"
             {
             "AssemblyRegister" = "3:1"
@@ -404,6 +430,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_67C146576E2A437D865D4AA2A047F534"
+                    {
+                    "Name" = "8:resources"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_B5DB67F1A45040F8A3C2605B8FFE8F1D"
+                        "Folders"
+                        {
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_8DFD3F605108421187C10D63C7D80EAE"
                     {
                     "Name" = "8:temp"
@@ -478,7 +515,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MAZE"
         "ProductCode" = "8:{13E978CF-3A9B-4029-9BFE-35486BF72C45}"
-        "PackageCode" = "8:{B483487C-6CE8-4CE6-97E1-19731E006CB4}"
+        "PackageCode" = "8:{DE213CB3-7FCA-46CF-921B-31342EDF1A4C}"
         "UpgradeCode" = "8:{7542EB51-4DBA-4FD5-B7F0-A79202E7D2C1}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

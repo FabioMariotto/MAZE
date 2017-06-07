@@ -52,6 +52,13 @@ namespace MAZE
                         accdb.Start();
                         Extractors.Add(accdb);
                     }
+                    else if (ConfigFile.read_attribute(configName, ConfigFile.Attrib_Type) == ConfigFile.TypeConfig_PIConfig)
+                    {
+                        LogFile.write_LogFile("Service thread created for config name \"" + configName + "\" of type \"" + ConfigFile.TypeConfig_PIConfig + "\"");
+                        ExtractorPIConfig PIConfig = new ExtractorPIConfig(configName);
+                        PIConfig.Start();
+                        Extractors.Add(PIConfig);
+                    }
 
                 }
 

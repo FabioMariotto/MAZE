@@ -6,6 +6,8 @@ using System.Configuration.Install;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 
 namespace MAZE
 {
@@ -16,13 +18,14 @@ namespace MAZE
         {
             InitializeComponent();
         }
-    
 
-    public override void Install(IDictionary savedState)
-    {
-        base.Install(savedState);
-        //Add custom code here
-    }
+
+        public override void Install(IDictionary savedState)
+        {
+            
+            base.Install(savedState);
+            //Add custom code here
+        }
 
 
     public override void Rollback(IDictionary savedState)

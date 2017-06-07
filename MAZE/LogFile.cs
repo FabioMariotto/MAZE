@@ -56,7 +56,7 @@ namespace MAZE
                 {
                     StreamWriter configWriter;
                     configWriter = new StreamWriter(LogFilePath, append);
-                    configWriter.Write("\r\n" + DateTime.Now.ToString() + "; " + text);
+                    configWriter.Write("\r\n" + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + "; " + text);
                     configWriter.Close();
                 }
                 else
@@ -83,12 +83,12 @@ namespace MAZE
                 {
                     StreamWriter configWriter;
                     configWriter = new StreamWriter(LogFilePath, append);
-                    configWriter.Write("\r\n" + DateTime.Now.ToString() + "; " + except.Source.ToString().Trim() + ": " + except.Message.ToString().Trim());
+                    configWriter.Write("\r\n" + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + "; " + except.Source.ToString().Trim() + ": " + except.Message.ToString().Trim());
                     configWriter.Close();
                 }
                 else
                 {
-                    File.WriteAllText(LogFilePath, DateTime.Now.ToString() + "; " + except.Source.ToString().Trim() + ": " + except.Message.ToString().Trim());
+                    File.WriteAllText(LogFilePath, DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + "; " + except.Source.ToString().Trim() + ": " + except.Message.ToString().Trim());
                 }
             }
             catch { }

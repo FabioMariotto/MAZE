@@ -11,9 +11,12 @@ namespace MAZE
     public static class Support
     {
         public static string InstalPath = AppDomain.CurrentDomain.BaseDirectory;
+        public static string resourcesPath = InstalPath + "\\resources";
         public static string ProcessedFilesLog = "ProcessedFilesLog.txt";
         public static string WhitelistFilePrefix = "WhiteList_";
         public static string TablelistFilePrefix = "TableList_";
+        public static string SelectedTagFilePrefix = "SelectedTags_";
+        public static string AllTagFilePrefix = "AllTags_";
 
         //Methods for checking if files were already processed and updating the record of processed files.
         #region Processed Files Log Managing

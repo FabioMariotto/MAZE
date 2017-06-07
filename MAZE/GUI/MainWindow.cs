@@ -211,6 +211,8 @@ namespace MAZE
                 {
                     Support.DeleteFile(Support.WhitelistFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt");
                     Support.DeleteFile(Support.TablelistFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt");
+                    Support.DeleteFile(Support.AllTagFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt");
+                    Support.DeleteFile(Support.SelectedTagFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt");
                     ConfigFile.DeleteConfig(listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem));
                     UpdateConfigList();
                 }
@@ -230,6 +232,8 @@ namespace MAZE
                     int i = listBox_ConfigList.SelectedIndex;
                     Support.RenameFile(Support.WhitelistFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt", Support.WhitelistFilePrefix + formRenameConfig.Choosen_Name + ".txt");
                     Support.RenameFile(Support.TablelistFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt", Support.TablelistFilePrefix + formRenameConfig.Choosen_Name + ".txt");
+                    Support.RenameFile(Support.AllTagFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt", Support.TablelistFilePrefix + formRenameConfig.Choosen_Name + ".txt");
+                    Support.RenameFile(Support.SelectedTagFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt", Support.TablelistFilePrefix + formRenameConfig.Choosen_Name + ".txt");
                     ConfigFile.RenameConfig(listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem), formRenameConfig.Choosen_Name);
                     UpdateConfigList();
                     listBox_ConfigList.SelectedIndex = i;
@@ -530,5 +534,301 @@ namespace MAZE
 
         #endregion
 
+        //PIConfig tab controls
+        #region PIConfig TAB CONFIGS
+
+
+       
+        private void PIConfig_OutPath_ValueChanged(object sender, EventArgs e)
+        {
+            if (!Regex.IsMatch(textBox_PIConfig_OutP.Text, @"(.*[\\|\/])([^\\|\/]*)([\\|\/]$)"))
+                textBox_PIConfig_OutP.ForeColor = Color.Red;
+            else
+                textBox_PIConfig_OutP.ForeColor = Color.Black;
+            PIConfig_AnyElement_ValueChanged(sender, e);
+        }
+        
+
+            private void textBox_PIConfig_Hfro_ValueChanged(object sender, EventArgs e)
+        {
+            if (!Regex.IsMatch(textBox_PIConfig_Hfro.Text, @"([\+|\-]?.*[d|m|y|mo|h|s])"))
+                textBox_PIConfig_Hfro.ForeColor = Color.Red;
+            else
+                textBox_PIConfig_Hfro.ForeColor = Color.Black;
+        }
+
+        private void textBox_PIConfig_Htoo_ValueChanged(object sender, EventArgs e)
+        {
+            if (!Regex.IsMatch(textBox_PIConfig_Htoo.Text, @"([\+|\-]?.*[d|m|y|mo|h|s])"))
+                textBox_PIConfig_Htoo.ForeColor = Color.Red;
+            else
+                textBox_PIConfig_Htoo.ForeColor = Color.Black;
+        }
+
+        //Event when any text box on PIConfig tab value is changed
+        private void PIConfig_AnyElement_ValueChanged(object sender, EventArgs e)
+        {
+            button_PIConfig_Save.Enabled = true;
+            button_PIConfig_Save.Text = "Save";
+        }
+
+
+        //when excel config is saved
+        private void button_PIConfig_Save_click(object sender, EventArgs e)
+        {
+            string configName = listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem);
+            string tipo = ConfigFile.read_attribute(configName, ConfigFile.Attrib_Type);
+
+            if (tipo == ConfigFile.TypeConfig_PIConfig)
+            {
+                ConfigFile.write_attribute(configName, ConfigFile.AttribPIConfig_Host, textBox_PIConfig_Host.Text);
+                ConfigFile.write_attribute(configName, ConfigFile.AttribPIConfig_User, textBox_PIConfig_User.Text);
+                ConfigFile.write_attribute(configName, ConfigFile.AttribPIConfig_Pass, textBox_PIConfig_Pass.Text);
+                ConfigFile.write_attribute(configName, ConfigFile.AttribPIConfig_OutP, textBox_PIConfig_OutP.Text);
+                ConfigFile.write_attribute(configName, ConfigFile.AttribPIConfig_Peri, textBox_PIConfig_Peri.Text);
+                ConfigFile.write_attribute(configName, ConfigFile.AttribPIConfig_Pref, textBox_PIConfig_Pref.Text);
+                if (checkBox_PIConfig_Mtrx.Checked == true)
+                    ConfigFile.write_attribute(configName, ConfigFile.AttribPIConfig_Mtrx, "1");
+                else
+                    ConfigFile.write_attribute(configName, ConfigFile.AttribPIConfig_Mtrx, "0");
+                button_PIConfig_Save.Enabled = false;
+                button_PIConfig_Save.Text = "Saved";
+            }
+
+        }
+
+        //Opens TagList file
+        private void button_PIConfig_TagList_click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listBox_ConfigList.SelectedIndex != -1)
+                {
+                    string configName = listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem);
+                    string TagFilePath = Support.InstalPath + "\\" + Support.SelectedTagFilePrefix + configName + ".txt";
+
+                    Support.CreateFile(Support.SelectedTagFilePrefix + configName + ".txt");
+                    Process p = Process.Start(TagFilePath);
+                    //p.WaitForExit();
+                    return;
+                }
+
+            }
+            catch (Exception exp)
+            {
+                LogFile.write_LogFile("Error trying to open Selected Tag List: " + exp.Message);
+            }
+            
+        }
+
+        //opens browser to select output folder
+        private void button_PIConfig_browseOutP_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog_output_Excel.SelectedPath = AppDomain.CurrentDomain.BaseDirectory; // Directory.GetCurrentDirectory();
+            folderBrowserDialog_output_Excel.Description = "Output destination folder";
+
+            if (folderBrowserDialog_output_Excel.ShowDialog() != DialogResult.Cancel)
+            {
+                textBox_PIConfig_OutP.Text = folderBrowserDialog_output_Excel.SelectedPath + "\\";
+            }
+        }
+
+        #endregion
+
+        private void button_PIConfig_GetAllTagList_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, "Are you sure you want to extract tag list from PI? \r\nThis operation may take a while...", "Fetching PI tag list", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+
+                //fetch pitags from pi
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+
+                string configName = listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem);
+
+                process.StartInfo.FileName = Support.InstalPath + "\\resources\\piconfig.exe";
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                process.StartInfo.RedirectStandardInput = true;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.UseShellExecute = false;
+                process.Start();
+                string input = "";
+                input = input + "@logi " + ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Host) + "," + ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_User)
+                    + "," + ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Pass) + "," + ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Port) + "\r\n";
+                input = input + "@maxerr 65535" + "\r\n";
+                input = input + "@table pipoint" + "\r\n";
+                input = input + "@mode list" + "\r\n";
+                input = input + "@ostr tag,pointtype" + "\r\n";
+                input = input + "@ostr ..." + "\r\n";
+                input = input + "@select tag=*" + "\r\n";
+                input = input + "@endsection" + "\r\n";
+                input = input + "@bye";
+
+                process.StandardInput.Write(input);
+                process.StandardInput.Flush();
+
+                process.StandardInput.Close();
+
+                string result = (process.StandardOutput.ReadToEnd());
+
+                string[] results = result.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                string finalresult = "";
+                for (int i = 0; i < results.Length; i++)
+                {
+                    //test to see if line is valid information or not (alert, error, etc)
+                    if (results[i].Contains(",") == true)
+                        finalresult = finalresult + results[i].Split(',')[0] + "\r\n";
+                }
+
+
+                process.WaitForExit();
+                //save on the alltags file
+                Support.CreateFile(Support.AllTagFilePrefix + configName + ".txt");
+                try
+                {
+                    Support.WriteOneLine(Support.AllTagFilePrefix + configName + ".txt", finalresult, false);
+                }
+                catch (Exception exc)
+                {
+                    LogFile.write_LogFile("Error trying to save list of all PI tags: " + exc.Message);
+                }
+                //DateTime time = DateTime.Now;             // Use current time.
+                //string format = "dd/mm/yyyy hh:mm";   // Use this format.
+                
+            }
+        }
+
+        private void button_PIConfig_AllTagList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listBox_ConfigList.SelectedIndex != -1)
+                {
+                    string configName = listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem);
+                    string TagFilePath = Support.InstalPath + "\\" + Support.AllTagFilePrefix + configName + ".txt";
+
+                    Support.CreateFile(Support.AllTagFilePrefix + configName + ".txt");
+                    Process p = Process.Start(TagFilePath);
+                    //p.WaitForExit();
+                    return;
+                }
+
+            }
+            catch (Exception exp)
+            {
+                LogFile.write_LogFile("Error trying to open All Tags List: " + exp.Message);
+            }
+        }
+
+        //make single historic extraction
+        private void button_PIConfig_ExtractDataHistory_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to extract history? \r\nThis operation may take a while...", "Extracting historical data", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                if (textBox_PIConfig_Hfro.Text != "" && textBox_PIConfig_Htoo.Text != "" && textBox_PIConfig_HPer.Text != "")
+                {
+
+                    System.Diagnostics.Process process = new System.Diagnostics.Process();
+
+                    process.StartInfo.FileName = Support.InstalPath + "resources\\piconfig.exe";
+                    process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    process.StartInfo.RedirectStandardInput = true;
+                    process.StartInfo.RedirectStandardOutput = true;
+                    process.StartInfo.UseShellExecute = false;
+                    process.Start();
+
+                    string configName = listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem);
+                    string input = "";
+                    input = input + "@logi " + ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Host) + "," + ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_User)
+                    + "," + ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Pass) + "," + ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Port) + "\r\n";
+                    input = input + "@maxerr 65535" + "\r\n";
+                    input = input + "@table piarc" + "\r\n";
+                    input = input + "@mode list" + "\r\n";
+                    input = input + "@modify count="+ textBox_PIConfig_HPer.Text + "\r\n";
+                    input = input + "@modify starttime = " + textBox_PIConfig_Hfro.Text + "\r\n";
+                    input = input + "@modify endtime = " + textBox_PIConfig_Htoo.Text + "\r\n";
+                    input = input + "@modify mode = even" + "\r\n";
+                    input = input + "@timf 1,F" + "\r\n";
+                    input = input + "@ostr tag,time,value" + "\r\n";
+                    input = input + "@ostr ..." + "\r\n";
+                    input = input + "@istr tag,starttime,endtime" + "\r\n";
+                    Support.CreateFile(Support.SelectedTagFilePrefix + configName + ".txt");
+                    input = input + "@input " + Support.InstalPath + "\\" + Support.SelectedTagFilePrefix + configName + ".txt" + "\r\n";
+                    input = input + "@endsection" + "\r\n";
+                    input = input + "@bye";
+
+
+                    process.StandardInput.Write(input);
+                    process.StandardInput.Flush();
+
+                    process.StandardInput.Close();
+
+                    string result = (process.StandardOutput.ReadToEnd());
+
+                    string[] results = result.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                    string finalresult = "";
+                    string header = "Timestamp";
+                    string dataline = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+
+                    //if (ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Mtrx) == "0")
+                    //{
+                        for (int i = 0; i < results.Length; i++)
+                        {
+                            //Selects only usefull info (removes alerts, erros and other messages) 
+                            if (results[i].Contains(",") == true)
+                                finalresult = finalresult + results[i] + "\r\n";
+                        }
+                    //}
+                    //else
+                    //{
+                    //    List<string> tags=new List<string>();
+                    //    List<string> times = new List<string>();
+                        
+                    //    for (int i = 0; i < results.Length; i++)
+                    //    {
+                    //        if (results[i].Contains(",") == true)
+                    //        {
+                    //            string[] thisline = results[i].Split(',');
+                    //            if (thisline.Length == 3)
+                    //            {
+                    //                if (!tags.Contains(thisline[2]))
+                    //                    tags.Add(thisline[2]);
+                    //                if (!times.Contains(thisline[1]))
+                    //                    times.Add(thisline[1]);
+                    //            }
+                    //        }
+                    //    }
+                    //    string[][] table = new string[][]();
+
+                    //    header += ";" + thisline[0].Replace(",", "");
+                    //    dataline += ";" + thisline[2].Replace(",", "");
+
+
+
+
+                    //    finalresult = header + "\r\n" + dataline;
+                    //}
+
+
+                    process.WaitForExit();
+
+                    string Outputpath = Regex.Split(ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_OutP), @"(.*[\\|\/])([^\\|\/]*)")[1];
+                    try
+                    {
+                        string Pref = ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Pref);
+                        string filename = (Pref == "") ? configName : Pref;
+                        File.AppendAllText(Outputpath + filename + "_Historic_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".csv", finalresult);
+                    }
+                    catch (Exception exx)
+                    {
+                        LogFile.write_LogFile("Error saving output for config " + configName + " with message: " + exx.Message);
+                    }
+
+                    
+
+                }
+                else
+                    MessageBox.Show("You need first to select a start time, end time, and output folder.");
+            }
+        }
     }
 }
