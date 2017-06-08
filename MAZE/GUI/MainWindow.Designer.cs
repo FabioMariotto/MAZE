@@ -80,6 +80,8 @@
             this.textBox_user_accdb = new System.Windows.Forms.TextBox();
             this.textBox_host_accdb = new System.Windows.Forms.TextBox();
             this.tabPage_Config_PIConfig = new System.Windows.Forms.TabPage();
+            this.label27 = new System.Windows.Forms.Label();
+            this.textBox_PIConfig_HPer = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.textBox_PIConfig_Hfro = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -112,8 +114,6 @@
             this.button_restartService = new System.Windows.Forms.Button();
             this.label_ServiceStatus = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.textBox_PIConfig_HPer = new System.Windows.Forms.TextBox();
             this.tabControl_mainTabs.SuspendLayout();
             this.tabPage_Config_Excel.SuspendLayout();
             this.tabPage_Log.SuspendLayout();
@@ -682,6 +682,23 @@
             this.tabPage_Config_PIConfig.Text = "Config";
             this.tabPage_Config_PIConfig.UseVisualStyleBackColor = true;
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(420, 84);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(35, 13);
+            this.label27.TabIndex = 20;
+            this.label27.Text = "Count";
+            // 
+            // textBox_PIConfig_HPer
+            // 
+            this.textBox_PIConfig_HPer.Location = new System.Drawing.Point(471, 81);
+            this.textBox_PIConfig_HPer.Name = "textBox_PIConfig_HPer";
+            this.textBox_PIConfig_HPer.Size = new System.Drawing.Size(132, 20);
+            this.textBox_PIConfig_HPer.TabIndex = 27;
+            this.textBox_PIConfig_HPer.Text = "60";
+            // 
             // label26
             // 
             this.label26.AutoSize = true;
@@ -696,7 +713,8 @@
             this.textBox_PIConfig_Hfro.Location = new System.Drawing.Point(471, 30);
             this.textBox_PIConfig_Hfro.Name = "textBox_PIConfig_Hfro";
             this.textBox_PIConfig_Hfro.Size = new System.Drawing.Size(132, 20);
-            this.textBox_PIConfig_Hfro.TabIndex = 17;
+            this.textBox_PIConfig_Hfro.TabIndex = 25;
+            this.textBox_PIConfig_Hfro.Text = "*-1h";
             this.textBox_PIConfig_Hfro.TextChanged += new System.EventHandler(this.textBox_PIConfig_Hfro_ValueChanged);
             // 
             // label25
@@ -713,7 +731,8 @@
             this.textBox_PIConfig_Htoo.Location = new System.Drawing.Point(471, 56);
             this.textBox_PIConfig_Htoo.Name = "textBox_PIConfig_Htoo";
             this.textBox_PIConfig_Htoo.Size = new System.Drawing.Size(132, 20);
-            this.textBox_PIConfig_Htoo.TabIndex = 15;
+            this.textBox_PIConfig_Htoo.TabIndex = 26;
+            this.textBox_PIConfig_Htoo.Text = "*";
             this.textBox_PIConfig_Htoo.TextChanged += new System.EventHandler(this.textBox_PIConfig_Htoo_ValueChanged);
             // 
             // button_PIConfig_ExtractDataHistory
@@ -721,7 +740,7 @@
             this.button_PIConfig_ExtractDataHistory.Location = new System.Drawing.Point(471, 107);
             this.button_PIConfig_ExtractDataHistory.Name = "button_PIConfig_ExtractDataHistory";
             this.button_PIConfig_ExtractDataHistory.Size = new System.Drawing.Size(132, 21);
-            this.button_PIConfig_ExtractDataHistory.TabIndex = 14;
+            this.button_PIConfig_ExtractDataHistory.TabIndex = 28;
             this.button_PIConfig_ExtractDataHistory.TabStop = false;
             this.button_PIConfig_ExtractDataHistory.Text = "Extract Data History";
             this.button_PIConfig_ExtractDataHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -766,7 +785,7 @@
             this.textBox_PIConfig_Host.Location = new System.Drawing.Point(102, 30);
             this.textBox_PIConfig_Host.Name = "textBox_PIConfig_Host";
             this.textBox_PIConfig_Host.Size = new System.Drawing.Size(177, 20);
-            this.textBox_PIConfig_Host.TabIndex = 10;
+            this.textBox_PIConfig_Host.TabIndex = 1;
             this.textBox_PIConfig_Host.TextChanged += new System.EventHandler(this.PIConfig_AnyElement_ValueChanged);
             // 
             // checkBox_PIConfig_Mtrx
@@ -966,22 +985,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(420, 84);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(37, 13);
-            this.label27.TabIndex = 20;
-            this.label27.Text = "Period";
-            // 
-            // textBox_PIConfig_HPer
-            // 
-            this.textBox_PIConfig_HPer.Location = new System.Drawing.Point(471, 81);
-            this.textBox_PIConfig_HPer.Name = "textBox_PIConfig_HPer";
-            this.textBox_PIConfig_HPer.Size = new System.Drawing.Size(132, 20);
-            this.textBox_PIConfig_HPer.TabIndex = 19;
             // 
             // Form_Main
             // 

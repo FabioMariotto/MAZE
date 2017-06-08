@@ -551,7 +551,7 @@ namespace MAZE
 
             private void textBox_PIConfig_Hfro_ValueChanged(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(textBox_PIConfig_Hfro.Text, @"([\+|\-]?.*[d|m|y|mo|h|s])"))
+            if (!Regex.IsMatch(textBox_PIConfig_Hfro.Text, @"([\+|\-]?.*[d|m|y|mo|h|s]?)"))
                 textBox_PIConfig_Hfro.ForeColor = Color.Red;
             else
                 textBox_PIConfig_Hfro.ForeColor = Color.Black;
@@ -559,7 +559,7 @@ namespace MAZE
 
         private void textBox_PIConfig_Htoo_ValueChanged(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(textBox_PIConfig_Htoo.Text, @"([\+|\-]?.*[d|m|y|mo|h|s])"))
+            if (!Regex.IsMatch(textBox_PIConfig_Htoo.Text, @"([\+|\-]?.*[d|m|y|mo|h|s]?)"))
                 textBox_PIConfig_Htoo.ForeColor = Color.Red;
             else
                 textBox_PIConfig_Htoo.ForeColor = Color.Black;
@@ -766,50 +766,74 @@ namespace MAZE
 
                     string[] results = result.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                     string finalresult = "";
-                    string header = "Timestamp";
-                    string dataline = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string datalines = "Timestamp";
+                    
 
-                    //if (ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Mtrx) == "0")
-                    //{
+                    if (ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Mtrx) == "0")
+                    {
                         for (int i = 0; i < results.Length; i++)
                         {
                             //Selects only usefull info (removes alerts, erros and other messages) 
                             if (results[i].Contains(",") == true)
                                 finalresult = finalresult + results[i] + "\r\n";
                         }
-                    //}
-                    //else
-                    //{
-                    //    List<string> tags=new List<string>();
-                    //    List<string> times = new List<string>();
-                        
-                    //    for (int i = 0; i < results.Length; i++)
-                    //    {
-                    //        if (results[i].Contains(",") == true)
-                    //        {
-                    //            string[] thisline = results[i].Split(',');
-                    //            if (thisline.Length == 3)
-                    //            {
-                    //                if (!tags.Contains(thisline[2]))
-                    //                    tags.Add(thisline[2]);
-                    //                if (!times.Contains(thisline[1]))
-                    //                    times.Add(thisline[1]);
-                    //            }
-                    //        }
-                    //    }
-                    //    string[][] table = new string[][]();
+                    }
+                    else
+                    {
+                        List<string> tags = new List<string>();
+                        List<string> times = new List<string>();
 
-                    //    header += ";" + thisline[0].Replace(",", "");
-                    //    dataline += ";" + thisline[2].Replace(",", "");
+                        for (int i = 0; i < results.Length; i++)
+                        {
+                            if (results[i].Contains(",") == true)
+                            {
+                                string[] thisline = results[i].Split(',');
+                                if (thisline.Length == 3)
+                                {
+                                    if (!tags.Contains(thisline[0]))
+                                        tags.Add(thisline[0]);
+                                    if (!times.Contains(thisline[1]))
+                                        times.Add(thisline[1]);
+                                }
+                            }
+                        }
+                        string[,] table = new string[tags.Count(), times.Count()];
+                        for (int i = 0; i < results.Length; i++)
+                        {
+                            if (results[i].Contains(",") == true)
+                            {
+                                string[] thisline = results[i].Split(',');
+                                if (thisline.Length == 3)
+                                {
+                                    table[tags.IndexOf(thisline[0]), times.IndexOf(thisline[1])] = thisline[2];
+                                }
+                            }
+                        }
+
+                        foreach (var tag in tags)
+                        {
+                            datalines += ";" + tag;
+                        }
+                        datalines += "\r\n";
+                        foreach (var time in times)
+                        {
+                            DateTime timestamp;
+                            if (DateTime.TryParse(time, out timestamp))
+                            {
+                                datalines += timestamp.ToString("yyyyMMdd_hhmmss");
+                                foreach (var tag in tags)
+                                {
+                                    datalines += ";" + table[tags.IndexOf(tag), times.IndexOf(time)].Replace(";", "");
+                                }
+                                datalines += "\r\n";
+                            }
+                        }
+
+                        finalresult = datalines;
+                    }
 
 
-
-
-                    //    finalresult = header + "\r\n" + dataline;
-                    //}
-
-
-                    process.WaitForExit();
+                process.WaitForExit();
 
                     string Outputpath = Regex.Split(ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_OutP), @"(.*[\\|\/])([^\\|\/]*)")[1];
                     try
