@@ -16,7 +16,7 @@ namespace MAZE
     class ExtractorPIConfig : ExtractorInterface
     {
 
-        String ConfigName, Host, User, Pass, OutP, Peri, Pref, Mtrx, Port;
+        String ConfigName, Host, User, Pass, OutP, Peri, Pref, Mtrx, Port, Inte;
         private System.Timers.Timer timer = null;
 
 
@@ -31,6 +31,7 @@ namespace MAZE
             Peri = ConfigFile.read_attribute(mConfigName, ConfigFile.AttribPIConfig_Peri);
             Pref = ConfigFile.read_attribute(mConfigName, ConfigFile.AttribPIConfig_Pref);
             Mtrx = ConfigFile.read_attribute(mConfigName, ConfigFile.AttribPIConfig_Mtrx);
+            Inte = ConfigFile.read_attribute(mConfigName, ConfigFile.AttribPIConfig_Inte);
 
             timer = new System.Timers.Timer();
             int x = 0;
@@ -113,8 +114,9 @@ namespace MAZE
             
             string[] results = result.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             string finalresult = "";
-            string header = "Timestamp";
-            string dataline = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            string dataline = DateTime.Now.ToString("dd-MMM-yyyy HH:mm:ss");
+            string datalineout = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            string datalines = "Timestamp";
 
             if (Mtrx == "0")
             {
@@ -122,11 +124,54 @@ namespace MAZE
                 {
                     //Selects only usefull info (removes alerts, erros and other messages) 
                     if (results[i].Contains(",") == true)
-                        finalresult = finalresult + results[i] + "\r\n";
+                    {
+                        string[] thisline = results[i].Split(',');
+                        if (thisline.Length == 3)
+                        {
+                            DateTime timestamp;
+                            if (DateTime.TryParse(thisline[1], out timestamp))
+                            {
+                                
+                                thisline[1] = timestamp.ToString("yyyyMMdd_HHmmss");
+                                if (Inte == "1")
+                                    thisline[1] = datalineout;
+                                finalresult = finalresult + thisline[0] + ";" + thisline[1] + ";" + thisline[2] + "\r\n";
+                            }
+
+                        }
+
+                    }
+
                 }
             }
             else
             {
+                List<string> tags = new List<string>();
+                List<string> times = new List<string>();
+
+                //for each line from response
+                for (int i = 0; i < results.Length; i++)
+                {
+                    //if line is data (non data line wont contain the "," char)
+                    if (results[i].Contains(",") == true)
+                    {
+                        string[] thisline = results[i].Split(',');
+                        if (thisline.Length == 3)
+                        {
+                            //add tag to tag array
+                            if (!tags.Contains(thisline[0]))
+                                tags.Add(thisline[0]);
+                            //add times to time array
+                            string hora = thisline[1];
+                            if (Inte == "1")
+                                hora = dataline;
+                            if (!times.Contains(hora))
+                                times.Add(hora);
+                        }
+                    }
+                }
+                //creates data table (matrix format)
+                string[,] table = new string[tags.Count(), times.Count()];
                 for (int i = 0; i < results.Length; i++)
                 {
                     if (results[i].Contains(",") == true)
@@ -134,12 +179,36 @@ namespace MAZE
                         string[] thisline = results[i].Split(',');
                         if (thisline.Length == 3)
                         {
-                            header += ";" + thisline[0].Replace(",", "");
-                            dataline += ";" + thisline[2].Replace(",", "");
+                            //add value to the spot on the table with corresponding tag and time
+                            string hora = thisline[1];
+                            if (Inte == "1")
+                                hora = dataline;
+                            table[tags.IndexOf(thisline[0]), times.IndexOf(hora)] = thisline[2];
                         }
                     }
                 }
-                finalresult = header + "\r\n" + dataline;
+
+                foreach (var tag in tags)
+                {
+                    datalines += ";" + tag;
+                }
+                datalines += "\r\n";
+                foreach (var time in times)
+                {
+                    DateTime timestamp;
+                    if (DateTime.TryParse(time, out timestamp))
+                    {
+                        datalines += timestamp.ToString("yyyyMMdd_HHmmss");
+                        foreach (var tag in tags)
+                        {
+                            string value = (table[tags.IndexOf(tag), times.IndexOf(time)] != null) ? table[tags.IndexOf(tag), times.IndexOf(time)] : "";
+                            datalines += ";" + value.Replace(";", "");
+                        }
+                        datalines += "\r\n";
+                    }
+                }
+
+                finalresult = datalines;
             }
 
 
@@ -149,7 +218,7 @@ namespace MAZE
             {
 
                 string filename = (Pref == "") ? ConfigName : Pref;
-                File.AppendAllText(Outputpath + filename + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".csv", finalresult);
+                File.AppendAllText(Outputpath + filename + "_" + datalineout + ".csv", finalresult);
             }
             catch (Exception exx)
             {

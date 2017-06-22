@@ -232,8 +232,8 @@ namespace MAZE
                     int i = listBox_ConfigList.SelectedIndex;
                     Support.RenameFile(Support.WhitelistFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt", Support.WhitelistFilePrefix + formRenameConfig.Choosen_Name + ".txt");
                     Support.RenameFile(Support.TablelistFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt", Support.TablelistFilePrefix + formRenameConfig.Choosen_Name + ".txt");
-                    Support.RenameFile(Support.AllTagFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt", Support.TablelistFilePrefix + formRenameConfig.Choosen_Name + ".txt");
-                    Support.RenameFile(Support.SelectedTagFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt", Support.TablelistFilePrefix + formRenameConfig.Choosen_Name + ".txt");
+                    Support.RenameFile(Support.AllTagFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt", Support.AllTagFilePrefix + formRenameConfig.Choosen_Name + ".txt");
+                    Support.RenameFile(Support.SelectedTagFilePrefix + listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem) + ".txt", Support.SelectedTagFilePrefix + formRenameConfig.Choosen_Name + ".txt");
                     ConfigFile.RenameConfig(listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem), formRenameConfig.Choosen_Name);
                     UpdateConfigList();
                     listBox_ConfigList.SelectedIndex = i;
@@ -315,6 +315,10 @@ namespace MAZE
                         checkBox_PIConfig_Mtrx.Checked = true;
                     else
                         checkBox_PIConfig_Mtrx.Checked = false;
+                    if (ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Inte) == "1")
+                        checkBox_PIConfig_Inte.Checked = true;
+                    else
+                        checkBox_PIConfig_Inte.Checked = false;
                     tabControl_mainTabs.TabPages.Add(tabPage_Config_PIConfig);
                     tabControl_mainTabs.TabPages.Add(tabPage_Log);
                     button_PIConfig_Save.Enabled = false;
@@ -551,18 +555,21 @@ namespace MAZE
 
             private void textBox_PIConfig_Hfro_ValueChanged(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(textBox_PIConfig_Hfro.Text, @"([\+|\-]?.*[d|m|y|mo|h|s]?)"))
-                textBox_PIConfig_Hfro.ForeColor = Color.Red;
+            //if (Regex.IsMatch(textBox_PIConfig_Hfro.Text, @"(?i)(^\*)([\+|\-]+[0-9]*(d|mo|y|h|m|s))?$")
+            //    || Regex.IsMatch(textBox_PIConfig_Hfro.Text, 
+            //    @"(?i)(^([1-9]|1[0-9]|2[0-9]|30|31)(\-(JAN|FEB|FEV|MAR|APR|ABR|MAI|JUN|JUL|AUG|AGO|SEP|SET|OUT|OCT|NOV|DEC|DEZ)(\-((20)|(19))?[0-9][0-9]( [0-9][0-9]:[0-9][0-9](:[0-9][0-9])?)?)?)?$)"))
+            if(Regex.IsMatch(textBox_PIConfig_Hfro.Text, @"(?i)(^([1-9]|1[0-9]|2[0-9]|30|31)(\/(0[1-9]|1[0-2])(\/((20)|(19))[0-9][0-9]( [0-9][0-9]:[0-9][0-9](:[0-9][0-9])?)?))$)"))
+            textBox_PIConfig_Hfro.ForeColor = Color.Black;
             else
-                textBox_PIConfig_Hfro.ForeColor = Color.Black;
+                textBox_PIConfig_Hfro.ForeColor = Color.Red;
         }
 
         private void textBox_PIConfig_Htoo_ValueChanged(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(textBox_PIConfig_Htoo.Text, @"([\+|\-]?.*[d|m|y|mo|h|s]?)"))
-                textBox_PIConfig_Htoo.ForeColor = Color.Red;
-            else
+            if (Regex.IsMatch(textBox_PIConfig_Htoo.Text, @"(?i)(^([1-9]|1[0-9]|2[0-9]|30|31)(\/(0[1-9]|1[0-2])(\/((20)|(19))[0-9][0-9]( [0-9][0-9]:[0-9][0-9](:[0-9][0-9])?)?))$)"))
                 textBox_PIConfig_Htoo.ForeColor = Color.Black;
+            else
+                textBox_PIConfig_Htoo.ForeColor = Color.Red;
         }
 
         //Event when any text box on PIConfig tab value is changed
@@ -591,6 +598,10 @@ namespace MAZE
                     ConfigFile.write_attribute(configName, ConfigFile.AttribPIConfig_Mtrx, "1");
                 else
                     ConfigFile.write_attribute(configName, ConfigFile.AttribPIConfig_Mtrx, "0");
+                if (checkBox_PIConfig_Inte.Checked == true)
+                    ConfigFile.write_attribute(configName, ConfigFile.AttribPIConfig_Inte, "1");
+                else
+                    ConfigFile.write_attribute(configName, ConfigFile.AttribPIConfig_Inte, "0");
                 button_PIConfig_Save.Enabled = false;
                 button_PIConfig_Save.Text = "Saved";
             }
@@ -722,136 +733,44 @@ namespace MAZE
         //make single historic extraction
         private void button_PIConfig_ExtractDataHistory_Click(object sender, EventArgs e)
         {
+
+            /*Examples of date formats:
+            "*"(now)
+            "*-8h"(8 hours ago)
+            "01"(first of current month)
+            "01-jan"(first of current year)
+            "*-1mo" (1 month ago)
+            "*-1m" (1 minute ago)
+            "*-1y" (1 year ago)
+
+            */
             if (MessageBox.Show("Are you sure you want to extract history? \r\nThis operation may take a while...", "Extracting historical data", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                if (textBox_PIConfig_Hfro.Text != "" && textBox_PIConfig_Htoo.Text != "" && textBox_PIConfig_HPer.Text != "")
+                
+                  if (Regex.IsMatch(textBox_PIConfig_Hfro.Text, @"(?i)(^([1-9]|1[0-9]|2[0-9]|30|31)(\/(0[1-9]|1[0-2])(\/((20)|(19))[0-9][0-9]( [0-9][0-9]:[0-9][0-9](:[0-9][0-9])?)?))$)")
+                    && Regex.IsMatch(textBox_PIConfig_Htoo.Text, @"(?i)(^([1-9]|1[0-9]|2[0-9]|30|31)(\/(0[1-9]|1[0-2])(\/((20)|(19))[0-9][0-9]( [0-9][0-9]:[0-9][0-9](:[0-9][0-9])?)?))$)")
+                    && Regex.IsMatch(textBox_PIConfig_HPer.Text, @"^[0-9]+$")
+                    )
                 {
-
-                    System.Diagnostics.Process process = new System.Diagnostics.Process();
-
-                    process.StartInfo.FileName = Support.InstalPath + "resources\\piconfig.exe";
-                    process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    process.StartInfo.RedirectStandardInput = true;
-                    process.StartInfo.RedirectStandardOutput = true;
-                    process.StartInfo.UseShellExecute = false;
-                    process.Start();
-
+                    string starttime = textBox_PIConfig_Hfro.Text.ToUpper();
+                    string endtime = textBox_PIConfig_Htoo.Text.ToUpper();
                     string configName = listBox_ConfigList.GetItemText(listBox_ConfigList.SelectedItem);
-                    string input = "";
-                    input = input + "@logi " + ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Host) + "," + ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_User)
-                    + "," + ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Pass) + "," + ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Port) + "\r\n";
-                    input = input + "@maxerr 65535" + "\r\n";
-                    input = input + "@table piarc" + "\r\n";
-                    input = input + "@mode list" + "\r\n";
-                    input = input + "@modify count="+ textBox_PIConfig_HPer.Text + "\r\n";
-                    input = input + "@modify starttime = " + textBox_PIConfig_Hfro.Text + "\r\n";
-                    input = input + "@modify endtime = " + textBox_PIConfig_Htoo.Text + "\r\n";
-                    input = input + "@modify mode = even" + "\r\n";
-                    input = input + "@timf 1,F" + "\r\n";
-                    input = input + "@ostr tag,time,value" + "\r\n";
-                    input = input + "@ostr ..." + "\r\n";
-                    input = input + "@istr tag,starttime,endtime" + "\r\n";
-                    Support.CreateFile(Support.SelectedTagFilePrefix + configName + ".txt");
-                    input = input + "@input " + Support.InstalPath + "\\" + Support.SelectedTagFilePrefix + configName + ".txt" + "\r\n";
-                    input = input + "@endsection" + "\r\n";
-                    input = input + "@bye";
-
-
-                    process.StandardInput.Write(input);
-                    process.StandardInput.Flush();
-
-                    process.StandardInput.Close();
-
-                    string result = (process.StandardOutput.ReadToEnd());
-
-                    string[] results = result.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                    string finalresult = "";
-                    string datalines = "Timestamp";
-                    
-
-                    if (ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Mtrx) == "0")
-                    {
-                        for (int i = 0; i < results.Length; i++)
-                        {
-                            //Selects only usefull info (removes alerts, erros and other messages) 
-                            if (results[i].Contains(",") == true)
-                                finalresult = finalresult + results[i] + "\r\n";
-                        }
-                    }
-                    else
-                    {
-                        List<string> tags = new List<string>();
-                        List<string> times = new List<string>();
-
-                        for (int i = 0; i < results.Length; i++)
-                        {
-                            if (results[i].Contains(",") == true)
-                            {
-                                string[] thisline = results[i].Split(',');
-                                if (thisline.Length == 3)
-                                {
-                                    if (!tags.Contains(thisline[0]))
-                                        tags.Add(thisline[0]);
-                                    if (!times.Contains(thisline[1]))
-                                        times.Add(thisline[1]);
-                                }
-                            }
-                        }
-                        string[,] table = new string[tags.Count(), times.Count()];
-                        for (int i = 0; i < results.Length; i++)
-                        {
-                            if (results[i].Contains(",") == true)
-                            {
-                                string[] thisline = results[i].Split(',');
-                                if (thisline.Length == 3)
-                                {
-                                    table[tags.IndexOf(thisline[0]), times.IndexOf(thisline[1])] = thisline[2];
-                                }
-                            }
-                        }
-
-                        foreach (var tag in tags)
-                        {
-                            datalines += ";" + tag;
-                        }
-                        datalines += "\r\n";
-                        foreach (var time in times)
-                        {
-                            DateTime timestamp;
-                            if (DateTime.TryParse(time, out timestamp))
-                            {
-                                datalines += timestamp.ToString("yyyyMMdd_hhmmss");
-                                foreach (var tag in tags)
-                                {
-                                    datalines += ";" + table[tags.IndexOf(tag), times.IndexOf(time)].Replace(";", "");
-                                }
-                                datalines += "\r\n";
-                            }
-                        }
-
-                        finalresult = datalines;
-                    }
-
-
-                process.WaitForExit();
-
-                    string Outputpath = Regex.Split(ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_OutP), @"(.*[\\|\/])([^\\|\/]*)")[1];
-                    try
-                    {
-                        string Pref = ConfigFile.read_attribute(configName, ConfigFile.AttribPIConfig_Pref);
-                        string filename = (Pref == "") ? configName : Pref;
-                        File.AppendAllText(Outputpath + filename + "_Historic_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".csv", finalresult);
-                    }
-                    catch (Exception exx)
-                    {
-                        LogFile.write_LogFile("Error saving output for config " + configName + " with message: " + exx.Message);
-                    }
-
-                    
+                    string count = textBox_PIConfig_HPer.Text;
+                    Form_PIConfig_HistExtract formHistsearch = new Form_PIConfig_HistExtract(starttime, endtime, configName, count);
+                    formHistsearch.ShowDialog();
 
                 }
                 else
-                    MessageBox.Show("You need first to select a start time, end time, and output folder.");
+                    MessageBox.Show("You need first to select proper \"from\", \"to\", and \"count\" values.");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           if( MessageBox.Show("Delete all the log history?","Confirm Deletion", MessageBoxButtons.OKCancel) == DialogResult.OK){
+                LogFile.clear_LogFile();
+                updateLOG();
+
             }
         }
     }

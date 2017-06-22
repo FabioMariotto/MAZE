@@ -80,6 +80,7 @@
             this.textBox_user_accdb = new System.Windows.Forms.TextBox();
             this.textBox_host_accdb = new System.Windows.Forms.TextBox();
             this.tabPage_Config_PIConfig = new System.Windows.Forms.TabPage();
+            this.checkBox_PIConfig_Inte = new System.Windows.Forms.CheckBox();
             this.label27 = new System.Windows.Forms.Label();
             this.textBox_PIConfig_HPer = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -114,6 +115,8 @@
             this.button_restartService = new System.Windows.Forms.Button();
             this.label_ServiceStatus = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl_mainTabs.SuspendLayout();
             this.tabPage_Config_Excel.SuspendLayout();
             this.tabPage_Log.SuspendLayout();
@@ -400,6 +403,7 @@
             // 
             // tabPage_Log
             // 
+            this.tabPage_Log.Controls.Add(this.button1);
             this.tabPage_Log.Controls.Add(this.richTextBox_Log);
             this.tabPage_Log.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Log.Name = "tabPage_Log";
@@ -412,11 +416,11 @@
             // richTextBox_Log
             // 
             this.richTextBox_Log.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.richTextBox_Log.Location = new System.Drawing.Point(0, 2);
+            this.richTextBox_Log.Location = new System.Drawing.Point(0, 6);
             this.richTextBox_Log.Name = "richTextBox_Log";
             this.richTextBox_Log.ReadOnly = true;
             this.richTextBox_Log.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBox_Log.Size = new System.Drawing.Size(668, 414);
+            this.richTextBox_Log.Size = new System.Drawing.Size(687, 377);
             this.richTextBox_Log.TabIndex = 0;
             this.richTextBox_Log.Text = "";
             // 
@@ -646,6 +650,8 @@
             // 
             // tabPage_Config_PIConfig
             // 
+            this.tabPage_Config_PIConfig.Controls.Add(this.label28);
+            this.tabPage_Config_PIConfig.Controls.Add(this.checkBox_PIConfig_Inte);
             this.tabPage_Config_PIConfig.Controls.Add(this.label27);
             this.tabPage_Config_PIConfig.Controls.Add(this.textBox_PIConfig_HPer);
             this.tabPage_Config_PIConfig.Controls.Add(this.label26);
@@ -682,14 +688,28 @@
             this.tabPage_Config_PIConfig.Text = "Config";
             this.tabPage_Config_PIConfig.UseVisualStyleBackColor = true;
             // 
+            // checkBox_PIConfig_Inte
+            // 
+            this.checkBox_PIConfig_Inte.AutoSize = true;
+            this.checkBox_PIConfig_Inte.Checked = true;
+            this.checkBox_PIConfig_Inte.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_PIConfig_Inte.Location = new System.Drawing.Point(105, 273);
+            this.checkBox_PIConfig_Inte.Name = "checkBox_PIConfig_Inte";
+            this.checkBox_PIConfig_Inte.Size = new System.Drawing.Size(103, 17);
+            this.checkBox_PIConfig_Inte.TabIndex = 29;
+            this.checkBox_PIConfig_Inte.Text = "Interpolate data.";
+            this.checkBox_PIConfig_Inte.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox_PIConfig_Inte.UseVisualStyleBackColor = true;
+            this.checkBox_PIConfig_Inte.CheckedChanged += new System.EventHandler(this.PIConfig_AnyElement_ValueChanged);
+            // 
             // label27
             // 
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(420, 84);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(35, 13);
+            this.label27.Size = new System.Drawing.Size(37, 13);
             this.label27.TabIndex = 20;
-            this.label27.Text = "Count";
+            this.label27.Text = "Period";
             // 
             // textBox_PIConfig_HPer
             // 
@@ -714,7 +734,7 @@
             this.textBox_PIConfig_Hfro.Name = "textBox_PIConfig_Hfro";
             this.textBox_PIConfig_Hfro.Size = new System.Drawing.Size(132, 20);
             this.textBox_PIConfig_Hfro.TabIndex = 25;
-            this.textBox_PIConfig_Hfro.Text = "*-1h";
+            this.textBox_PIConfig_Hfro.Text = "10/06/2017";
             this.textBox_PIConfig_Hfro.TextChanged += new System.EventHandler(this.textBox_PIConfig_Hfro_ValueChanged);
             // 
             // label25
@@ -732,7 +752,7 @@
             this.textBox_PIConfig_Htoo.Name = "textBox_PIConfig_Htoo";
             this.textBox_PIConfig_Htoo.Size = new System.Drawing.Size(132, 20);
             this.textBox_PIConfig_Htoo.TabIndex = 26;
-            this.textBox_PIConfig_Htoo.Text = "*";
+            this.textBox_PIConfig_Htoo.Text = "12/06/2017";
             this.textBox_PIConfig_Htoo.TextChanged += new System.EventHandler(this.textBox_PIConfig_Htoo_ValueChanged);
             // 
             // button_PIConfig_ExtractDataHistory
@@ -791,6 +811,8 @@
             // checkBox_PIConfig_Mtrx
             // 
             this.checkBox_PIConfig_Mtrx.AutoSize = true;
+            this.checkBox_PIConfig_Mtrx.Checked = true;
+            this.checkBox_PIConfig_Mtrx.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_PIConfig_Mtrx.Location = new System.Drawing.Point(105, 250);
             this.checkBox_PIConfig_Mtrx.Name = "checkBox_PIConfig_Mtrx";
             this.checkBox_PIConfig_Mtrx.Size = new System.Drawing.Size(177, 17);
@@ -986,6 +1008,25 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(609, 84);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(53, 13);
+            this.label28.TabIndex = 30;
+            this.label28.Text = "[seconds]";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(591, 387);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(86, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Clear Log";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1102,6 +1143,9 @@
         public System.Windows.Forms.Button button_PIConfig_ExtractDataHistory;
         public System.Windows.Forms.Label label27;
         public System.Windows.Forms.TextBox textBox_PIConfig_HPer;
+        public System.Windows.Forms.CheckBox checkBox_PIConfig_Inte;
+        public System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button button1;
     }
 }
 

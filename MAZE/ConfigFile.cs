@@ -44,6 +44,7 @@ namespace MAZE
         public static string AttribPIConfig_Peri = "Period";
         public static string AttribPIConfig_Pref = "NamePrefix";
         public static string AttribPIConfig_Mtrx = "MatrixFormat";
+        public static string AttribPIConfig_Inte = "Interpolated";
 
 
         public static string InstalPath = AppDomain.CurrentDomain.BaseDirectory;

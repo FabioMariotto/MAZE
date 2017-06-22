@@ -68,6 +68,21 @@ namespace MAZE
         }
 
         /// <summary>
+        /// Clears the log file
+        /// </summary>
+        /// <param name="text">text to be writen</param>
+        /// <param name="append">append?(default=true)</param>
+        public static void clear_LogFile()
+        {
+
+            try
+            {
+                File.WriteAllText(LogFilePath, "");
+            }
+            catch { }
+        }
+
+        /// <summary>
         /// Writes exception to the log file
         /// </summary>
         /// <param name="except"></param>
