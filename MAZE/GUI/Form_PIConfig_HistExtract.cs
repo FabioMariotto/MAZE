@@ -206,6 +206,8 @@ namespace MAZE.GUI
                                 DateTime timestamp;
                                 if (DateTime.TryParse(thisline[1], out timestamp))
                                 {
+                                    if (thisline[2] == "Digital State")
+                                        thisline[2] = "";
                                     thisline[1] = timestamp.ToString("yyyyMMdd_HHmmss");
                                     finalresult = finalresult + thisline[0] + ";" + thisline[1] + ";" + thisline[2] + "\r\n";
                                 }
@@ -249,6 +251,8 @@ namespace MAZE.GUI
                             string[] thisline = results[i].Split(',');
                             if (thisline.Length == 3)
                             {
+                                if (thisline[2] == "Digital State")
+                                    thisline[2] = "";
                                 //add value to the spot on the table with corresponding tag and time
                                 table[tags.IndexOf(thisline[0]), times.IndexOf(thisline[1])] = thisline[2];
                             }

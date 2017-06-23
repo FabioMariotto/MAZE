@@ -57,6 +57,7 @@
             this.textBox_User_Excel = new System.Windows.Forms.TextBox();
             this.textBox_Host_Excel = new System.Windows.Forms.TextBox();
             this.tabPage_Log = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.richTextBox_Log = new System.Windows.Forms.RichTextBox();
             this.tabPage_Config_ACCDB = new System.Windows.Forms.TabPage();
             this.checkBox_modifiedOnly_accdb = new System.Windows.Forms.CheckBox();
@@ -80,6 +81,7 @@
             this.textBox_user_accdb = new System.Windows.Forms.TextBox();
             this.textBox_host_accdb = new System.Windows.Forms.TextBox();
             this.tabPage_Config_PIConfig = new System.Windows.Forms.TabPage();
+            this.label28 = new System.Windows.Forms.Label();
             this.checkBox_PIConfig_Inte = new System.Windows.Forms.CheckBox();
             this.label27 = new System.Windows.Forms.Label();
             this.textBox_PIConfig_HPer = new System.Windows.Forms.TextBox();
@@ -115,8 +117,6 @@
             this.button_restartService = new System.Windows.Forms.Button();
             this.label_ServiceStatus = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl_mainTabs.SuspendLayout();
             this.tabPage_Config_Excel.SuspendLayout();
             this.tabPage_Log.SuspendLayout();
@@ -378,8 +378,10 @@
             // 
             this.textBox_Password_Excel.Location = new System.Drawing.Point(102, 108);
             this.textBox_Password_Excel.Name = "textBox_Password_Excel";
+            this.textBox_Password_Excel.PasswordChar = '*';
             this.textBox_Password_Excel.Size = new System.Drawing.Size(177, 20);
             this.textBox_Password_Excel.TabIndex = 4;
+            this.textBox_Password_Excel.UseSystemPasswordChar = true;
             this.textBox_Password_Excel.Visible = false;
             this.textBox_Password_Excel.TextChanged += new System.EventHandler(this.ExcelTab_AnyElement_ValueChanged);
             // 
@@ -412,6 +414,16 @@
             this.tabPage_Log.TabIndex = 1;
             this.tabPage_Log.Text = "Log";
             this.tabPage_Log.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(591, 387);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(86, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Clear Log";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // richTextBox_Log
             // 
@@ -625,8 +637,10 @@
             // 
             this.textBox_password_accdb.Location = new System.Drawing.Point(102, 108);
             this.textBox_password_accdb.Name = "textBox_password_accdb";
+            this.textBox_password_accdb.PasswordChar = '*';
             this.textBox_password_accdb.Size = new System.Drawing.Size(177, 20);
             this.textBox_password_accdb.TabIndex = 4;
+            this.textBox_password_accdb.UseSystemPasswordChar = true;
             this.textBox_password_accdb.Visible = false;
             this.textBox_password_accdb.TextChanged += new System.EventHandler(this.accdbTab_AnyElement_ValueChanged);
             // 
@@ -687,6 +701,15 @@
             this.tabPage_Config_PIConfig.TabIndex = 3;
             this.tabPage_Config_PIConfig.Text = "Config";
             this.tabPage_Config_PIConfig.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(609, 84);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(53, 13);
+            this.label28.TabIndex = 30;
+            this.label28.Text = "[seconds]";
             // 
             // checkBox_PIConfig_Inte
             // 
@@ -948,8 +971,10 @@
             // 
             this.textBox_PIConfig_Pass.Location = new System.Drawing.Point(102, 108);
             this.textBox_PIConfig_Pass.Name = "textBox_PIConfig_Pass";
+            this.textBox_PIConfig_Pass.PasswordChar = '*';
             this.textBox_PIConfig_Pass.Size = new System.Drawing.Size(180, 20);
             this.textBox_PIConfig_Pass.TabIndex = 4;
+            this.textBox_PIConfig_Pass.UseSystemPasswordChar = true;
             this.textBox_PIConfig_Pass.TextChanged += new System.EventHandler(this.PIConfig_AnyElement_ValueChanged);
             // 
             // textBox_PIConfig_User
@@ -1007,25 +1032,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(609, 84);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(53, 13);
-            this.label28.TabIndex = 30;
-            this.label28.Text = "[seconds]";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(591, 387);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Clear Log";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form_Main
             // 

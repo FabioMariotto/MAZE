@@ -135,6 +135,8 @@ namespace MAZE
                                 thisline[1] = timestamp.ToString("yyyyMMdd_HHmmss");
                                 if (Inte == "1")
                                     thisline[1] = datalineout;
+                                if (thisline[2] == "Digital State")
+                                    thisline[2] = "";
                                 finalresult = finalresult + thisline[0] + ";" + thisline[1] + ";" + thisline[2] + "\r\n";
                             }
 
@@ -183,6 +185,8 @@ namespace MAZE
                             string hora = thisline[1];
                             if (Inte == "1")
                                 hora = dataline;
+                            if (thisline[2] == "Digital State")
+                                thisline[2] = "";
                             table[tags.IndexOf(thisline[0]), times.IndexOf(hora)] = thisline[2];
                         }
                     }
