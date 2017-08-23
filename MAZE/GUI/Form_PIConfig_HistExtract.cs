@@ -69,7 +69,7 @@ namespace MAZE.GUI
                     moi = "APR";
                     break;
                 case 5:
-                    moi = "MAI";
+                    moi = "MAY";
                     break;
                 case 6:
                     moi = "JUN";
